@@ -22,6 +22,10 @@
       console.log(msg);
     });
 
+    socket.on('error', function(msg) {
+      console.error(msg);
+    });
+
     $('#filter-form').on('submit', function(e) {
       e.preventDefault();
       var form = $(this).serializeArray();

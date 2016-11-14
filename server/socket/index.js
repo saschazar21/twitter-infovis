@@ -8,7 +8,6 @@ module.exports = (app) => {
   var io = socket(server);
 
   io.on('connection', (socket) => {
-    console.log('User connected.');
     socket.on('filter', msg => twitter(msg)
       .then((stream) => {
         stream.on('tweet', tweet => socket.emit('tweet', tweet));
