@@ -1,6 +1,6 @@
 require('./bootstrap');
 
-var express = require('express')
+var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var errorHandler = require('errorhandler');
@@ -8,7 +8,10 @@ var methodOverride = require('method-override');
 var compress = require('compression');
 var appConfig = require('./config/app');
 var appDevConfig = require('./config/app.dev');
+var socket = require('./socket/index');
+
 var app = express();
+var http = socket(app);
 
 // Define font mime types
 express.static.mime.define({
@@ -67,7 +70,7 @@ var port = config.production ? process.env.PORT : 5000;
 port = !port ? 5000 : port;
 
 // Start the server
-app.listen(port);
+http.listen(port);
 
 console.log('Server listening on port ' + port);
 console.log('');
