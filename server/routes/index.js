@@ -1,7 +1,6 @@
 "use strict";
 
 var router = require('express').Router();
-var twitter = require('../twitter/index');
 
 // define middleware and routes here
 
@@ -19,14 +18,6 @@ function createErrRes(err) {
 
   return error;
 }
-
-router.get('/twitter', (req, res) => {
-  return twitter(req.query)
-  .then(stream => {
-    stream.on('tweet', tweet => res.json(tweet));
-  })
-  .catch(e => res.status(500).json(e));
-});
 
 router.get('/test', function(req, res) {
   return res.json({
