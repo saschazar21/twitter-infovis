@@ -19,6 +19,7 @@
     "newrelic": "^1.28.3",
     "node-env-file": "^0.1.8",
     "socket.io": "^1.5.1",
-    "socket.io-stream": "^0.9.1"
+    "socket.io-stream": "^0.9.1",
+    "twit": "^2.2.5"
   }
 }
