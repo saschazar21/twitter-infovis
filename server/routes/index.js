@@ -23,7 +23,7 @@ function createErrRes(err) {
 router.get('/twitter', (req, res) => {
   return twitter(req.query)
   .then(stream => {
-    stream.on('data', tweet => res.json(tweet));
+    stream.on('tweet', tweet => res.json(tweet));
   })
   .catch(e => res.status(500).json(e));
 });
