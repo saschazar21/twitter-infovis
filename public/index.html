@@ -5,7 +5,11 @@
   <title>iv-test-app</title>
 </head>
 <body>
-  index
+  <form id="filter-form" method="POST" action="#">
+    <input id="track" name="track" type="text" placeholder="Twitter filter: e.g. #trump">
+    <button type="submit">Submit</button>
+  </form>
+
   <script src="/js/lib/socket.io.js"></script>
   <script src="/js/lib/socket.io-stream.js"></script>
   <script src="/js/lib/jquery.js"></script>
@@ -13,7 +17,21 @@
 
   <script type="text/javascript">
     var socket = io();
-    socket.emit('welcome', 'Hello from client.');
+
+    socket.on('tweet', function(msg) {
+      console.log(msg);
+    });
+
+    $('#filter-form').on('submit', function(e) {
+      e.preventDefault();
+      var form = $(this).serializeArray();
+      var obj = {};
+      form.forEach(function(val, key) {
+        obj[val.name] = val.value;
+      });
+
+      socket.emit('filter', obj);
+    });
   </script>
 </body>
 </html>
