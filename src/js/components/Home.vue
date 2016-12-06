@@ -12,6 +12,5 @@
 <template>
   <div>
     <controls></controls>
-    Home
   </div>
 </template>
