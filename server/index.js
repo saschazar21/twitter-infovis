@@ -46,9 +46,6 @@ app.use(compress());
 app.use(middleware.isFile);
 app.use(express.static(path.join(__dirname, config.publicDir)));
 
-// Routes
-app.use(require('./routes'));
-
 // Serve index if file does not exist
 app.get('*', (req, res, next) => {
   if (!req.isFile) {
