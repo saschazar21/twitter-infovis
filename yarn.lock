@@ -1233,6 +1233,10 @@ csrf@~3.0.0:
     tsscmp "1.0.5"
     uid-safe "2.1.3"
 
+css-animator@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/css-animator/-/css-animator-1.2.5.tgz#d0b7fbf749f42f42a86d7be38e9eb5ba2db6f6ea"
+
 css-color-names@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
