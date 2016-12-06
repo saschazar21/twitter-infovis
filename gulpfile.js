@@ -95,6 +95,8 @@ gulp.task('copy', [
 ]);
 
 gulp.task('build', done => {
+  process.env.NODE_ENV = 'production';
+
   webpackConfig.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       compress: {
