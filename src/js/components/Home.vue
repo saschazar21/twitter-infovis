@@ -1,9 +1,17 @@
 <script>
+  import Controls from './Controls.vue'
+
   export default {
-    name: 'Home'
+    name: 'Home',
+    components: {
+      Controls
+    }
   }
 </script>
 
 <template>
-  <div>Home</div>
+  <div>
+    <controls></controls>
+    Home
+  </div>
 </template>
