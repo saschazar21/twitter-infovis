@@ -9,15 +9,15 @@
     <div class="row">
       <div class="col s12">
         <nav>
-          <div class="nav-wrapper white black-text ">
-            <a class="brand-logo cyan-text hide-on-med-and-down">
-              <img src="assets/icons/idea.svg" title="logo">
+          <div class="nav-wrapper white black-text">
+            <a class="brand-logo cyan-text hide-on-small-only">
+              <img src="assets/icons/line_chart.svg" title="logo">
             </a>
             <ul class="right">
-              <li><a class="menuitem modal-trigger" href="#status"><i class="material-icons teal-text text-lighten-1">subject</i></a></li>
+              <li><a class="menuitem"><i class="material-icons teal-text text-lighten-1">info_outline</i></a></li>
               <li><a class="menuitem"><i class="material-icons blue-grey-text">refresh</i></a></li>
               <li><a class="menuitem"><i class="material-icons red-text">close</i></a></li>
-              <li class="github-button"><a href="https://github.com/fabiandev/vue-twitter-stream" target="_blank" class="waves-effect waves-light btn"><i class="material-icons left">code</i>GitHub</a></li>
+              <li class="github-button"><a href="https://github.com/fabiandev/vue-twitter-stream-app" target="_blank" class="waves-effect waves-light btn"><i class="material-icons left">code</i>GitHub</a></li>
             </ul>
             <div class="progress">
               <div class="determinate" style="width:0%"></div>
@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
   .progress {
     position: absolute;
     border-radius: 0;
@@ -39,7 +39,11 @@
   }
 
   .nav-wrapper {
-    margin-bottom: 3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .nav-wrapper > .row {
+    margin-bottom: 5px;
   }
 
   .menuitem {
@@ -61,6 +65,7 @@
 
   .brand-logo {
     height: 100%;
+    left: 0;
   }
 
   a.brand-logo {

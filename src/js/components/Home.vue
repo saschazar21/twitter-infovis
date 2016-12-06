@@ -4,13 +4,13 @@
   export default {
     name: 'Home',
     components: {
-      Controls
+      AppControls: Controls
     }
   }
 </script>
 
 <template>
   <div>
-    <controls></controls>
+    <app-controls></app-controls>
   </div>
 </template>
