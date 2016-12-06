@@ -8,7 +8,7 @@
   <div>
     <div class="row">
       <div class="col s12">
-        <v-card class="white">
+        <div class="card white">
           <div class="card-content center-align black-text">
             <span class="card-title teal-text">Controls</span>
             <div class="row answers">
@@ -16,7 +16,7 @@
             </div>
           </div>
         </div>
-      </v-card>
+      </div>
     </div>
   </div>
 </template>

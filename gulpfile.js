@@ -63,10 +63,36 @@ gulp.task('build:less', () => {
     .pipe(gulp.dest('./public/css'));
 });
 
-gulp.task('copy', () => {
+gulp.task('copy:fonts', () => {
   return gulp.src('./node_modules/materialize-css/dist/fonts/**/*')
-    .pipe(gulp.dest('./public/fonts'));
+    .pipe(gulp.dest('./public/assets/fonts'));
 });
+
+gulp.task('copy:iconfont', () => {
+  let base = './node_modules/material-design-icons/iconfont';
+  return gulp.src([
+      `${base}/*.eot`,
+      `${base}/*.ttf`,
+      `${base}/*.woff`,
+      `${base}/*.woff2`
+    ])
+    .pipe(gulp.dest('./public/assets/fonts'));
+});
+
+gulp.task('copy:icons', () => {
+  let base = './node_modules/material-design-icons/iconfont';
+  return gulp.src('./node_modules/flat-color-icons/svg/*.svg')
+    .pipe(gulp.dest('./public/assets/icons'));
+});
+
+gulp.task('copy:assets', () => {
+  return gulp.src('./src/assets/**/*')
+    .pipe(gulp.dest('./public/assets'));
+});
+
+gulp.task('copy', [
+  'copy:fonts', 'copy:iconfont', 'copy:icons', 'copy:assets'
+]);
 
 gulp.task('build', done => {
   webpackConfig.plugins.push(
