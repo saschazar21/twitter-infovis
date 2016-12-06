@@ -1,41 +1,12 @@
 <!doctype html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>iv-test-app</title>
-</head>
-<body>
-  <form id="filter-form" method="POST" action="#">
-    <input id="track" name="track" type="text" placeholder="Twitter filter: e.g. #trump">
-    <button type="submit">Submit</button>
-  </form>
-
-  <script src="/js/lib/socket.io.js"></script>
-  <script src="/js/lib/socket.io-stream.js"></script>
-  <script src="/js/lib/jquery.js"></script>
-  <script src="/js/app.js"></script>
-
-  <script type="text/javascript">
-    var socket = io();
-
-    socket.on('tweet', function(msg) {
-      console.log(msg);
-    });
-
-    socket.on('error', function(msg) {
-      console.error(msg);
-    });
-
-    $('#filter-form').on('submit', function(e) {
-      e.preventDefault();
-      var form = $(this).serializeArray();
-      var obj = {};
-      form.forEach(function(val, key) {
-        obj[val.name] = val.value;
-      });
-
-      socket.emit('filter', obj);
-    });
-  </script>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>Twitter Realtime Infovis</title>
+    <link rel="stylesheet" href="css/app.css">
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="js/app.js"></script>
+  </body>
 </html>
