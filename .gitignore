@@ -1,4 +1,6 @@
+# Custom
 .env
+/public
 
 # Logs
 logs
