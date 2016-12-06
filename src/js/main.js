@@ -3,14 +3,12 @@ import './bootstrap';
 import Vue from 'vue';
 import Router from 'vue-router';
 import Resource from 'vue-resource';
-import Materials from 'vue-materials'
 
 import App from './components/App.vue';
 import Home from './components/Home.vue';
 
 Vue.use(Router);
 Vue.use(Resource);
-Vue.use(Materials);
 
 const routes = [{
   path: '/',
