@@ -2609,10 +2609,6 @@ jquery@^2.1.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
 
-jquery@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.1.1.tgz#347c1c21c7e004115e0a4da32cece041fad3c8a3"
-
 js-base64@^2.1.9:
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.1.9.tgz#f0e80ae039a4bd654b5f281fc93f04a914a7fcce"
@@ -4932,12 +4928,6 @@ vue-materialize@^1.0.0:
     vue-zoombox "^1.0.0"
     vueify-insert-css "^1.0.0"
 
-vue-materials@^1.0.5-rc.6:
-  version "1.0.5-rc.6"
-  resolved "https://registry.yarnpkg.com/vue-materials/-/vue-materials-1.0.5-rc.6.tgz#e6fdf00bdaab028ec14273c464e101c40a41d6ca"
-  dependencies:
-    vue "^2.0.1"
-
 vue-mixins@^0.2.14, vue-mixins@^0.2.17, vue-mixins@^0.2.19:
   version "0.2.20"
   resolved "https://registry.yarnpkg.com/vue-mixins/-/vue-mixins-0.2.20.tgz#f58cf2af25dd012cd81afdd3a0daf77005634a78"
@@ -5041,7 +5031,7 @@ vue-zoombox@^1.0.0:
     vue-mixins "^0.3.0"
     vue-overlay "^1.0.1"
 
-vue@^2.0.1, vue@^2.1.4:
+vue@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.1.4.tgz#d490f8fcf696847d8cf7f8eb9168e9a5dd806bfc"
 
