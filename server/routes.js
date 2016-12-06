@@ -1,6 +1,6 @@
 "use strict";
 
-var router = require('express').Router();
+const router = require('express').Router();
 
 // define middleware and routes here
 
@@ -18,11 +18,5 @@ function createErrRes(err) {
 
   return error;
 }
-
-router.get('/test', function(req, res) {
-  return res.json({
-    success: true
-  });
-});
 
 module.exports = router;

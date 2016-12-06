@@ -1,11 +1,13 @@
-var http = require('http');
-var socket = require('socket.io');
-var twitter = require('../twitter/index');
+"use strict";
+
+const http = require('http');
+const socket = require('socket.io');
+const twitter = require('./twitter');
 
 
 module.exports = (app) => {
-  var server = http.Server(app);
-  var io = socket(server);
+  let server = http.Server(app);
+  let io = socket(server);
 
   io.on('connection', (socket) => {
     socket.on('filter', msg => twitter(msg)
