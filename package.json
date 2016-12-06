@@ -8,7 +8,10 @@
     "postinstall": "gulp build",
     "heroku-postbuild": "npm prune --production"
   },
-  "author": "Fabian Pirklbauer",
+  "author": "Fabian Pirklbauer <hi@fabiandev.io>",
+  "contributors": [
+    "Sascha Zarhuber"
+  ],
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.15.0",
