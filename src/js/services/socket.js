@@ -1,2 +1,2 @@
-import io from 'socket.io-client';
-export default io();
+import io from 'socket.io-client'
+export default io()

@@ -17,9 +17,11 @@ module.exports = (obj) => new Promise((resolve, reject) => {
     if (obj.follow) {
       settings.follow = obj.follow;
     }
+
     if (obj.track) {
       settings.track = obj.track;
     }
+
     if (obj.locations) {
       settings.locations = obj.locations;
     }
@@ -28,5 +30,6 @@ module.exports = (obj) => new Promise((resolve, reject) => {
 
     return resolve(stream);
   }
+  
   return reject('Parameter was not an object!');
 });
