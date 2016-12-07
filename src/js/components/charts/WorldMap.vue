@@ -1,11 +1,6 @@
 <script>
 import Highcharts from 'highcharts'
-import Highmaps from 'highcharts/modules/map'
-import ChartData from 'highcharts/modules/data'
 import WorldMap from '../../data/worldmap'
-
-Highmaps(Highcharts)
-ChartData(Highcharts)
 
 Highcharts.maps['custom/world'] = WorldMap
 

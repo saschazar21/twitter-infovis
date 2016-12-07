@@ -1,7 +1,5 @@
 <script>
 import Highcharts from 'highcharts'
-import SolidGaugeChart from 'highcharts/modules/solid-gauge'
-SolidGaugeChart(Highcharts)
 
 export default {
   name: 'SolidGauge',
@@ -19,7 +17,7 @@ export default {
     initChart(max) {
       let gaugeOptions = this.getChartOptions()
 
-      const chart = Highcharts.chart('chart-container-speed', Highcharts.merge(gaugeOptions, {
+      const chart = Highcharts.chart('chart-container-gauge', Highcharts.merge(gaugeOptions, {
         yAxis: {
           min: 0,
           max: max || 100,
@@ -130,6 +128,6 @@ export default {
 </script>
 
 <template>
-<div id="chart-container-speed">
+<div id="chart-container-gauge">
 </div>
 </template>
