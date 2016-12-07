@@ -5,8 +5,15 @@ SolidGaugeChart(Highcharts)
 
 export default {
   name: 'StarPlot',
+  data: () => ({
+    chart: null
+  }),
   mounted() {
-    this.initChart()
+    this.chart = this.initChart()
+  },
+  beforeDestroy() {
+    this.chart.destroy()
+    this.chart = null
   },
   methods: {
     initChart() {
@@ -73,6 +80,8 @@ export default {
           point2.update(newVal2)
         }, 500)
       }, 2000)
+
+      return chart
     }
   }
 }

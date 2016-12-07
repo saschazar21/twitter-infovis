@@ -3,8 +3,15 @@ import Highcharts from 'highcharts'
 
 export default {
   name: 'LiveSpline',
+  data: () => ({
+    chart: null
+  }),
   mounted() {
-    this.initChart()
+    this.chart = this.initChart()
+  },
+  beforeDestroy() {
+    this.chart.destroy()
+    this.chart = null
   },
   methods: {
     initChart() {
@@ -81,6 +88,8 @@ export default {
         let y = Math.round(Math.random() * 10)
         series.addPoint([x, y], true, true)
       }, 1000)
+
+      return chart
     }
   }
 }

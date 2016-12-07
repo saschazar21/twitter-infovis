@@ -5,8 +5,15 @@ SolidGaugeChart(Highcharts)
 
 export default {
   name: 'SolidGauge',
+  data: () => ({
+    chart: null
+  }),
   mounted() {
-    this.initChart(200)
+    this.chart = this.initChart(200)
+  },
+  beforeDestroy() {
+    this.chart.destroy()
+    this.chart = null
   },
   methods: {
     initChart(max) {
@@ -96,7 +103,7 @@ export default {
           ],
           lineWidth: 0,
           minorTickInterval: null,
-          tickAmount: 2,
+          tickAmount: 5,
           title: {
             y: -70
           },
@@ -114,7 +121,9 @@ export default {
             }
           }
         }
-      };
+      }
+
+      return chart
     }
   }
 }
