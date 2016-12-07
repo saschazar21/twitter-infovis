@@ -5,19 +5,19 @@ import Router from 'vue-router'
 import Resource from 'vue-resource'
 
 import App from './components/App.vue'
-import Home from './components/Home.vue'
+import Visualizations from './components/Visualizations.vue'
 
 Vue.use(Router)
 Vue.use(Resource)
 
 const routes = [{
   path: '/',
-  name: 'home',
-  component: Home
+  name: 'visualizations',
+  component: Visualizations
 }, {
   path: '*',
   redirect: {
-    name: 'home'
+    name: 'visualizations'
   }
 }]
 
