@@ -3,13 +3,14 @@
     name: 'Controls',
     data: () => ({
       chips: [],
-      chipsPlaceholder: 'Enter tags to track',
+      chipsPlaceholder: 'Enter a tag to track and hit enter',
       chipsShortPlaceholder: '+Tag',
       value: ''
     }),
     methods: {
       addChip() {
-        this.chips.push(this.value.replace(/^(#)/, ''))
+        // TODO: Parse valid hashtag from passed string
+        this.chips.push(this.value.trim().replace(/^(#)/, '').replace(/\s+/g, ''))
         this.value = ''
       },
       removeChip(index) {
@@ -60,7 +61,7 @@
             <div class="row answers left-align">
               <div class="col s12 m2 hide-on-small-only"></div>
               <div class="col s12 m8" @click="focus">
-                <div class="chips chips-placeholder">
+                <div class="chips chips-placeholder" :style="{ 'border-bottom-color': chips.length ? 'transparent' : null }">
                   <div class="chip" v-for="(chip, index) in chips">
                     #{{ chip }}<i class="material-icons close" @click="removeChip(index)">close</i>
                   </div>
@@ -69,6 +70,7 @@
                     ref="tagsInput"
                     :readonly="limitReached"
                     :placeholder="placeholderText"
+                    :style="{ width: !chips.length ? '250px !important' : limitReached ? '0 !important' : '120px !important' }"
                     @keydown.enter="addChip"
                     @keydown.delete="removePrevChip"
                     v-model="value"
@@ -87,10 +89,6 @@
 <style scoped>
   .chips {
     margin-top: 1rem;
-  }
-
-  .chips>input {
-    width: 125px !important;
   }
 
   .card blockquote {
