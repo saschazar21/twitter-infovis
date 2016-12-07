@@ -4,6 +4,7 @@ import Card from './Card.vue';
 
 import SolidGauge from './charts/SolidGauge.vue'
 import StarPlot from './charts/StarPlot.vue'
+import LiveSpline from './charts/LiveSpline.vue'
 
 export default {
   name: 'Home',
@@ -11,7 +12,8 @@ export default {
     AppControls: Controls,
     AppCard: Card,
     ChartSolidGauge: SolidGauge,
-    ChartStarPlot: StarPlot
+    ChartStarPlot: StarPlot,
+    ChartLiveSpline: LiveSpline
   },
   data: () => ({
 
@@ -32,6 +34,12 @@ export default {
     <app-card size="s12 m6">
       <div slot="content">
         <chart-star-plot></chart-star-plot>
+      </div>
+    </app-card>
+
+    <app-card size="s12 m6">
+      <div slot="content">
+        <chart-live-spline></chart-live-spline>
       </div>
     </app-card>
   </div>
