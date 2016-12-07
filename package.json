@@ -43,6 +43,8 @@
     "gulp-connect": "^5.0.0",
     "gulp-less": "^3.3.0",
     "gulp-rename": "^1.2.2",
+    "highcharts": "^5.0.6",
+    "highcharts-more": "^0.1.2",
     "material-design-icons": "^3.0.1",
     "materialize-css": "^0.97.8",
     "normalize.css": "^5.0.0",
