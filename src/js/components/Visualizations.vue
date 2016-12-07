@@ -29,35 +29,69 @@ export default {
 <div>
   <app-controls></app-controls>
   <div class="row">
-    <app-card size="s12 m6">
-      <div slot="content">
-        <chart-solid-gauge></chart-solid-gauge>
-      </div>
-    </app-card>
+    <transition name="card1" appear>
+      <app-card size="s12 m6">
+        <div slot="content">
+          <chart-solid-gauge></chart-solid-gauge>
+        </div>
+      </app-card>
+    </transition>
 
-    <app-card size="s12 m6">
-      <div slot="content">
-        <chart-star-plot></chart-star-plot>
-      </div>
-    </app-card>
+    <transition name="card2" appear>
+      <app-card size="s12 m6">
+        <div slot="content">
+          <chart-star-plot></chart-star-plot>
+        </div>
+      </app-card>
+    </transition>
 
-    <app-card size="s12 m6">
-      <div slot="content">
-        <chart-live-spline></chart-live-spline>
-      </div>
-    </app-card>
+    <transition name="card3" appear>
+      <app-card size="s12 m6">
+        <div slot="content">
+          <chart-live-spline></chart-live-spline>
+        </div>
+      </app-card>
+    </transition>
 
-    <app-card size="s12 m6">
-      <div slot="content">
-        <chart-bar></chart-bar>
-      </div>
-    </app-card>
+    <transition name="card4" appear>
+      <app-card size="s12 m6">
+        <div slot="content">
+          <chart-bar></chart-bar>
+        </div>
+      </app-card>
+    </transition>
 
-    <app-card size="s12">
-      <div slot="content">
-        <chart-world-map></chart-world-map>
-      </div>
-    </app-card>
+    <transition name="card5" appear>
+      <app-card size="s12">
+        <div slot="content">
+          <chart-world-map></chart-world-map>
+        </div>
+      </app-card>
+    </transition>
+
   </div>
 </div>
 </template>
+
+<style scoped>
+.card1-enter-active {
+  opacity: 0;
+  animation: fadeIn 0.6s ease 1.8s;
+}
+.card2-enter-active {
+  opacity: 0;
+  animation: fadeIn 0.6s ease 2s;
+}
+.card3-enter-active {
+  opacity: 0;
+  animation: fadeIn 0.6s ease 2.2s;
+}
+.card4-enter-active {
+  opacity: 0;
+  animation: fadeIn 0.6s ease 2.4s;
+}
+.card5-enter-active {
+  opacity: 0;
+  animation: fadeIn 0.6s ease 2.6s;
+}
+</style>
