@@ -67,3 +67,25 @@ export default {
   </transition>
 </div>
 </template>
+
+<style scoped>
+.fade-nav-enter-active {
+  opacity: 0;
+  animation: fadeInDown 0.8s ease 0.8s;
+}
+
+.fade-nav-leave-active {
+  opacity: 1;
+  animation: fadeOutUp 0.5s;
+}
+
+.fade-route-enter-active {
+  opacity: 0;
+  animation: fadeInUp 0.7s ease 1s;
+}
+
+.fade-route-leave-active {
+  opacity: 1;
+  animation: fadeOutDown 0.5s ease-out;
+}
+</style>
