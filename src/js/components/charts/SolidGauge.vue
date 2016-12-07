@@ -61,9 +61,9 @@ export default {
         let point = chart.series[0].points[0]
         let newVal = point.y + 20
         point.update(newVal)
-        chart.yAxis[0].update({
-          max: newVal + 100
-        })
+        // chart.yAxis[0].update({
+        //   max: newVal + 100
+        // })
       }, 2000)
     },
     getChartOptions() {
@@ -97,9 +97,9 @@ export default {
         // the value axis
         yAxis: {
           stops: [
-            [0.1, '#55BF3B'], // green
-            [0.5, '#DDDF0D'], // yellow
-            [0.9, '#DF5353'] // red
+            [0.1, 'rgb(166, 234, 138)'], // green
+            [0.5, 'rgb(250, 237, 128)'], // yellow
+            [0.9, 'rgb(233, 133, 155)'] // red
           ],
           lineWidth: 0,
           minorTickInterval: null,
