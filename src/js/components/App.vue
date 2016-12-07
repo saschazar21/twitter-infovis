@@ -59,7 +59,11 @@
 
 <template>
   <div class="container">
-    <app-nav></app-nav>
-    <router-view></router-view>
+    <transition name="fade-nav" appear>
+      <app-nav></app-nav>
+    </transition>
+    <transition name="fade-route" appear>
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
