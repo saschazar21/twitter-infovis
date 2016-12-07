@@ -17,7 +17,7 @@ export default {
     initChart(max) {
       let gaugeOptions = this.getChartOptions()
 
-      const chart = Highcharts.chart('chart-container-gauge', Highcharts.merge(gaugeOptions, {
+      const chart = Highcharts.chart(this.$el, Highcharts.merge(gaugeOptions, {
         yAxis: {
           min: 0,
           max: max || 100,
@@ -55,14 +55,14 @@ export default {
 
       }))
 
-      setInterval(() => {
-        let point = chart.series[0].points[0]
-        let newVal = point.y + 20
-        point.update(newVal)
-        // chart.yAxis[0].update({
-        //   max: newVal + 100
-        // })
-      }, 2000)
+      // setInterval(() => {
+      //   let point = chart.series[0].points[0]
+      //   let newVal = point.y + 20
+      //   point.update(newVal)
+      //   // chart.yAxis[0].update({
+      //   //   max: newVal + 100
+      //   // })
+      // }, 2000)
     },
     getChartOptions() {
       return {
@@ -128,6 +128,6 @@ export default {
 </script>
 
 <template>
-<div id="chart-container-gauge">
+<div>
 </div>
 </template>

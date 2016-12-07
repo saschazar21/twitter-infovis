@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     initChart() {
-      const chart = Highcharts.chart('chart-container-star', {
+      const chart = Highcharts.chart(this.$el, {
 
         chart: {
           polar: true,
@@ -70,16 +70,16 @@ export default {
 
       })
 
-      setInterval(() => {
-        let point = chart.series[0].points[0]
-        let point2 = chart.series[0].points[1]
-        let newVal = point.y + 10000
-        let newVal2 = point2.y + 5000
-        point.update(newVal)
-        setTimeout(() => {
-          point2.update(newVal2)
-        }, 500)
-      }, 2000)
+      // setInterval(() => {
+      //   let point = chart.series[0].points[0]
+      //   let point2 = chart.series[0].points[1]
+      //   let newVal = point.y + 10000
+      //   let newVal2 = point2.y + 5000
+      //   point.update(newVal)
+      //   setTimeout(() => {
+      //     point2.update(newVal2)
+      //   }, 500)
+      // }, 2000)
 
       return chart
     }
@@ -88,6 +88,6 @@ export default {
 </script>
 
 <template>
-<div id="chart-container-star">
+<div>
 </div>
 </template>

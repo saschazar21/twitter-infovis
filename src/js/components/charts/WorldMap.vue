@@ -25,7 +25,7 @@ export default {
       //   }
       // });
 
-      const chart = Highcharts.mapChart('chart-container-map', {
+      const chart = Highcharts.mapChart(this.$el, {
         chart: {
           borderWidth: 0,
           map: 'custom/world'
@@ -709,12 +709,12 @@ export default {
         }]
       })
 
-      setInterval(() => {
-        let point = chart.series[1].points[34]
-        point.update({
-            z: point.z + 50000
-        })
-      }, 1000)
+      // setInterval(() => {
+      //   let point = chart.series[1].points[34]
+      //   point.update({
+      //       z: point.z + 50000
+      //   })
+      // }, 1000)
 
       return chart
     }
@@ -723,6 +723,6 @@ export default {
 </script>
 
 <template>
-<div id="chart-container-map">
+<div>
 </div>
 </template>

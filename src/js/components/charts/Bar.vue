@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     initChart() {
-      const chart = Highcharts.chart('chart-container-bar', {
+      const chart = Highcharts.chart(this.$el, {
         chart: {
           type: 'column'
         },
@@ -87,11 +87,11 @@ export default {
         }]
       })
 
-      setInterval(() => {
-        let point = chart.series[0].points[0]
-        let newVal = point.y + 2
-        point.update(newVal)
-      }, 1000)
+      // setInterval(() => {
+      //   let point = chart.series[0].points[0]
+      //   let newVal = point.y + 2
+      //   point.update(newVal)
+      // }, 1000)
 
       return chart
     }
@@ -100,5 +100,5 @@ export default {
 </script>
 
 <template>
-<div id="chart-container-bar"></div>
+<div></div>
 </template>

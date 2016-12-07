@@ -21,7 +21,7 @@ export default {
         }
       });
 
-      const chart = Highcharts.chart('chart-container-spline', {
+      const chart = Highcharts.chart(this.$el, {
         chart: {
           type: 'spline',
           animation: Highcharts.svg, // don't animate in old IE
@@ -82,12 +82,12 @@ export default {
         }]
       })
 
-      let series = chart.series[0];
-      setInterval(() => {
-        let x = (new Date()).getTime() // current time
-        let y = Math.round(Math.random() * 10)
-        series.addPoint([x, y], true, true)
-      }, 1000)
+      // let series = chart.series[0];
+      // setInterval(() => {
+      //   let x = (new Date()).getTime() // current time
+      //   let y = Math.round(Math.random() * 10)
+      //   series.addPoint([x, y], true, true)
+      // }, 1000)
 
       return chart
     }
@@ -96,5 +96,5 @@ export default {
 </script>
 
 <template>
-<div id="chart-container-spline">
+<div></div>
 </template>
