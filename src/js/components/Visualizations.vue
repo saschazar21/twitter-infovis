@@ -6,6 +6,7 @@ import SolidGauge from './charts/SolidGauge.vue'
 import StarPlot from './charts/StarPlot.vue'
 import LiveSpline from './charts/LiveSpline.vue'
 import Bar from './charts/Bar.vue'
+import WorldMap from './charts/WorldMap.vue'
 
 export default {
   name: 'Home',
@@ -15,7 +16,8 @@ export default {
     ChartSolidGauge: SolidGauge,
     ChartStarPlot: StarPlot,
     ChartLiveSpline: LiveSpline,
-    ChartBar: Bar
+    ChartBar: Bar,
+    ChartWorldMap: WorldMap
   },
   data: () => ({
 
@@ -48,6 +50,12 @@ export default {
     <app-card size="s12 m6">
       <div slot="content">
         <chart-bar></chart-bar>
+      </div>
+    </app-card>
+
+    <app-card size="s12">
+      <div slot="content">
+        <chart-world-map></chart-world-map>
       </div>
     </app-card>
   </div>
