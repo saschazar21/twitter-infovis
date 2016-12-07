@@ -54,8 +54,8 @@ export default {
 
           <blockquote>
             Enter up to five tags below and we'll stream live data from the
-            <a class="btn-flat" href="https://dev.twitter.com/streaming/overview" target="_blank">Twitter API</a> to visualize it with the power of <a class="btn-flat" href="https://vuejs.org" target="_blank">Vue</a> and <a class="btn-flat" href="http://www.chartjs.org"
-                target="_blank">Chart.js</a> for you. Enjoy <span class="red-text text-lighten-2">&hearts;</span>
+            <a class="btn-flat" href="https://dev.twitter.com/streaming/overview" target="_blank">Twitter API</a> to visualize it with the power of <a class="btn-flat" href="https://vuejs.org" target="_blank">Vue</a> and <a class="btn-flat" href="http://www.highcharts.com"
+                target="_blank">Highcharts</a> for you. Enjoy <span class="red-text text-lighten-2">&hearts;</span>
           </blockquote>
 
           <div class="row answers left-align">
