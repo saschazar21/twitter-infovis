@@ -7,6 +7,11 @@ export default {
     chipsShortPlaceholder: '+Tag',
     value: ''
   }),
+  mounted() {
+    setTimeout(() => {
+      this.focus()
+    }, 500)
+  },
   methods: {
     addChip() {
       // TODO: Parse valid hashtag from passed string
@@ -66,14 +71,19 @@ export default {
                   #{{ chip }}<i class="material-icons close" @click="removeChip(index)">close</i>
                 </div>
                 <input class="input" ref="tagsInput" :readonly="limitReached" :placeholder="placeholderText" :style="{ width: !chips.length ? '250px !important' : limitReached ? '0 !important' : '120px !important' }" @keydown.enter="addChip" @keydown.delete="removePrevChip"
-                    v-model="value">
+                    v-model="value" maxlength="30">
               </div>
             </div>
             <div class="col s12 m2 hide-on-small-only"></div>
             <div class="col s12 center-align">
-              <transition name="fade-button">
-                <span v-if="chips.length" class="btn start-button waves-effect waves-light">Start Stream</span>
-              </transition>
+              <div v-if="chips.length">
+                <transition name="fade-button" appear>
+                  <span class="btn start-button waves-effect waves-light">Start Stream</span>
+                </transition>
+              </div>
+              <div v-else class="button-placeholder center-align grey-text text-lighten-1">
+                Enter at least one tag to start a stream.
+              </div>
             </div>
           </div>
         </div>
@@ -86,6 +96,16 @@ export default {
 <style scoped>
 .start-button {
   margin-top: 15px;
+}
+
+.button-placeholder {
+  margin-top: 15px;
+  width: 200px;
+  height: 36px;
+  left: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: visible;
 }
 
 .chips {
@@ -108,9 +128,5 @@ export default {
 
 .fade-button-enter-active {
   animation: fadeInDown 0.3s;
-}
-
-.fade-button-leave-active {
-  animation: fadeOutUp 0.3s;
 }
 </style>
