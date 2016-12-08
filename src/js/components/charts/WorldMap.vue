@@ -45,6 +45,7 @@ export default {
 
         mapNavigation: {
           enabled: true,
+          enableMouseWheelZoom: false,
           buttonOptions: {
             verticalAlign: 'bottom'
           }
