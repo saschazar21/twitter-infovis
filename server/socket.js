@@ -10,6 +10,7 @@ module.exports = (app) => {
   let io = socket(server);
 
   io.on('connection', (socket) => {
+    console.log(`Socket connection established.`)
     socket.on('filter', msg => twitter(msg)
       .then((stream) => {
         stream.on('tweet', tweet => socket.emit('tweet', tweet));
