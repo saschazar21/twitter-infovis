@@ -5,3 +5,5 @@ import Highmaps from 'highcharts/modules/map'
 HighchartsMore(Highcharts)
 SolidGaugeChart(Highcharts)
 Highmaps(Highcharts)
+
+window.scrollTo(0, 0)
