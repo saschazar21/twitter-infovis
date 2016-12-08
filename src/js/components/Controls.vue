@@ -70,6 +70,11 @@ export default {
               </div>
             </div>
             <div class="col s12 m2 hide-on-small-only"></div>
+            <div class="col s12 center-align">
+              <transition name="fade-button">
+                <span v-if="chips.length" class="btn start-button waves-effect waves-light">Start Stream</span>
+              </transition>
+            </div>
           </div>
         </div>
       </div>
@@ -79,6 +84,10 @@ export default {
 </template>
 
 <style scoped>
+.start-button {
+  margin-top: 15px;
+}
+
 .chips {
   margin-top: 1rem;
 }
@@ -95,5 +104,13 @@ export default {
   padding: 0 5px;
   line-height: 20px;
   margin-top: -2px;
+}
+
+.fade-button-enter-active {
+  animation: fadeInDown 0.3s;
+}
+
+.fade-button-leave-active {
+  animation: fadeOutUp 0.3s;
 }
 </style>
