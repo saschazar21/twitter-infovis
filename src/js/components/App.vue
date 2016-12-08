@@ -50,8 +50,18 @@ export default {
     })
 
     Socket.on('reconnect_failed', () => {
-      this.errorModalVisible = true
       this.errorDetail = 'Reconnecting failed. Please reload the page.'
+      this.errorModalVisible = true
+    })
+
+    Socket.on('stream_recovered', () => {
+      this.resetError()
+    })
+
+    Socket.on('stream_error', () => {
+      this.errorMessage = 'There was an error with the Twitter stream.'
+      this.errorDetail = 'Please try to reload the page.'
+      this.errorModalVisible = true
     })
   },
   mounted() {
