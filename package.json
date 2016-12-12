@@ -1,5 +1,5 @@
 {
-  "name": "iv-test-app",
+  "name": "vue-twitter-stream-app",
   "version": "0.1.0",
   "description": "",
   "main": "server/index.js",

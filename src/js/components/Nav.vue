@@ -3,12 +3,21 @@ import StreamService from '../services/stream'
 
 export default {
   name: 'Nav',
+  data: () => ({
+    infoModalVisible: false
+  }),
   methods: {
     end() {
       StreamService.end()
     },
     reset() {
       StreamService.reset()
+    },
+    showInfo() {
+      this.infoModalVisible = true
+    },
+    hideInfo() {
+      this.infoModalVisible = false
     }
   }
 }
@@ -24,7 +33,7 @@ export default {
             <img src="assets/icons/line_chart.svg" title="logo">
           </a>
           <ul class="right">
-            <li><a class="menuitem"><i class="material-icons teal-text text-lighten-1">info_outline</i></a></li>
+            <li><a class="menuitem"><i class="material-icons teal-text text-lighten-1" @click="showInfo">info_outline</i></a></li>
             <li><a class="menuitem"><i class="material-icons blue-grey-text" @click="reset">refresh</i></a></li>
             <li><a class="menuitem"><i class="material-icons red-text" @click="end">close</i></a></li>
             <li class="github-button"><a href="https://github.com/fabiandev/vue-twitter-stream-app" target="_blank" class="waves-effect waves-light btn"><i class="material-icons left">code</i>GitHub</a></li>
@@ -36,6 +45,25 @@ export default {
       </nav>
     </div>
   </div>
+
+  <transition name="fade-modal">
+    <div class="info-modal modal open" v-if="infoModalVisible">
+      <div class="modal-content">
+        <h5 class="blue-grey-text">Information Visualization Project</h5>
+        <br>
+        <p class="black-text">
+          This is a project for the course <strong>Information Visualisation</strong> at the <a href="https://www.fh-ooe.at/en/hagenberg-campus/studiengaenge/master/interactive-media/" target="_blank">University of Applied Sciences Upper Austria Campus Hagenberg</a> by <strong>Fabian Pirklbauer</strong> and <strong>Sascha Zarhuber</strong>.
+          To learn more about the project, please head over to our <a href="https://github.com/fabiandev/vue-twitter-stream-app" target="_blank">repository on GitHub</a>.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <span class="modal-action modal-close waves-effect waves-teal btn-flat" @click="hideInfo">Close</span>
+      </div>
+    </div>
+  </transition>
+  <transition name="fade-modal-overlay">
+    <div class="modal-overlay" id="materialize-modal-overlay-6" v-if="infoModalVisible" @click="hideInfo"></div>
+  </transition>
 </div>
 </template>
 
@@ -97,5 +125,40 @@ a.brand-logo {
   .github-button {
     display: none;
   }
+}
+
+.info-modal {
+  z-index: 1003;
+  display: block;
+  opacity: 1;
+  transform: scaleX(1);
+  top: 10%;
+}
+
+.modal-overlay {
+  z-index: 1002;
+  display: block;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.fade-modal-enter-active {
+  opacity: 0;
+  animation: fadeInUp 0.5s;
+}
+
+.fade-modal-overlay-enter-active {
+  opacity: 0;
+  animation: fadeIn 0.3s;
+}
+
+.fade-modal-leave-active {
+  opacity: 0;
+  animation: fadeOutDown 0.3s;
+}
+
+.fade-modal-overlay-leave-active {
+  opacity: 0;
+  animation: fadeOut 0.3s;
 }
 </style>
