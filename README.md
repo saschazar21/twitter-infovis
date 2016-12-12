@@ -10,6 +10,8 @@ $ cd vue-twitter-stream-app
 $ yarn && yarn start
 ```
 
+> Also copy server/.env.example, rename it to .env and fill in your credentials.
+
 # Live Example
 
 [https://ivapp.herokuapp.com/](https://ivapp.herokuapp.com/)
