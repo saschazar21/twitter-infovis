@@ -8,13 +8,19 @@ export default {
     chipsPlaceholder: 'Enter a tag to track and hit enter',
     chipsShortPlaceholder: '+Tag',
     value: '',
-    streamActive: false
+    streamActive: false,
+    connectedClients: 0,
+    streamOccupied: false
   }),
   created() {
     Bus.$on('end', this.onEnd)
+    Bus.$on('stream_status', this.onStreamStatus)
+    Bus.$on('connections', this.onConnections)
   },
   beforeDestroy() {
     Bus.$off('end', this.onEnd)
+    Bus.$off('stream_status', this.onStreamStatus)
+    Bus.$off('connections', this.onConnections)
   },
   mounted() {
     setTimeout(() => {
@@ -22,6 +28,14 @@ export default {
     }, 500)
   },
   methods: {
+    onStreamStatus(status) {
+      this.connectedClients = status.connections
+      this.streamOccupied = status.streamActive
+    },
+    onConnections(status) {
+      this.connectedClients = status.connections
+      this.streamOccupied = status.streamActive
+    },
     onEnd() {
       this.streamActive = false
     },
@@ -92,13 +106,18 @@ export default {
             </div>
             <div class="col s12 m2 hide-on-small-only"></div>
             <div v-if="!streamActive" class="col s12 center-align">
-              <div v-if="chips.length > 2">
+              <div v-if="chips.length > 2 && !streamOccupied">
                 <transition name="fade-button" appear>
                   <span class="btn start-button waves-effect waves-light" @click="startStream">Start Stream</span>
                 </transition>
               </div>
               <div v-else class="button-placeholder center-align grey-text text-lighten-1">
-                Enter at least three tags to start a stream.
+                <div v-if="streamOccupied">
+                  Due to Twitter limitations, only one client can start a stream. Please wait until the stream is released. (Connections: {{ connectedClients }})
+                </div>
+                <div v-else>
+                  Enter at least three tags to start a stream.
+                </div>
               </div>
             </div>
             <div v-else class="col s12 center-align">
@@ -148,7 +167,7 @@ export default {
 
 .button-placeholder {
   margin-top: 15px;
-  width: 200px;
+  width: 400px;
   height: 36px;
   left: 50%;
   margin-left: auto;

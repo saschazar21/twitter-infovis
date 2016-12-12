@@ -41,7 +41,6 @@ export function interval(func, wait) {
 
       clearTimeout(timeout)
       timeout = setTimeout(later, wait)
-      return timeout
     },
     stop: function() {
       clearTimeout(timeout)

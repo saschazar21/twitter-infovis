@@ -9,7 +9,8 @@ Highcharts.maps['custom/world'] = WorldMap
 export default {
   name: 'WorldMap',
   data: () => ({
-    chart: null
+    chart: null,
+    countries: {}
   }),
   mounted() {
     this.init()
@@ -40,6 +41,13 @@ export default {
     onUpdate(data) {
       for (let code in data.countries) {
         if(data.countries.hasOwnProperty(code)) {
+          if (
+            this.countries[code] &&
+            this.countries[code].count == data.countries[code].count
+          ) {
+            continue;
+          }
+
           let index = this.chart.series[1].points.findIndex(element => {
             return element.code === code
           })
@@ -52,6 +60,8 @@ export default {
           }
         }
       }
+
+      this.countries = data.countries
     },
     initChart() {
       const chart = Highcharts.mapChart(this.$el, {

@@ -16,7 +16,7 @@ class StreamService {
     this.onMessage = this.onMessage.bind(this)
     this.onUpdate = this.onUpdate.bind(this)
     this.onTweet = this.onTweet.bind(this)
-    this.updateInterval = interval(this.forceUpdate, 9500)
+    this.updateInterval = interval(this.forceUpdate, 5500)
     this.worker.addEventListener('message', this.onMessage, false)
     this.onUpdate = debounce(this.onUpdate, 1000)
   }
@@ -63,7 +63,9 @@ class StreamService {
       cmd: 'stop'
     })
     Socket.disconnect()
-    Socket.connect()
+    setTimeout(() => {
+      Socket.connect()
+    }, 1000)
     Bus.$emit('end')
   }
 

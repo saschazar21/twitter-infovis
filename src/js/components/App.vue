@@ -1,6 +1,6 @@
 <script>
 import { AnimationBuilder } from 'css-animator/builder'
-import { Socket } from '../services'
+import { Bus, Socket } from '../services'
 import Nav from './Nav.vue'
 
 export default {
@@ -14,6 +14,18 @@ export default {
     AppNav: Nav
   },
   created() {
+    Socket.on('connections', status => {
+      Bus.$emit('connections', status)
+    })
+
+    Socket.on('stream_active', status => {
+      Bus.$emit('stream_status', status)
+    })
+
+    Socket.on('stream_inactive', status => {
+      Bus.$emit('stream_status', status)
+    })
+
     Socket.on('connect', err => {
       this.resetError()
     })
