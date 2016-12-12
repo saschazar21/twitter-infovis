@@ -10,10 +10,11 @@ module.exports = (app) => {
   let io = socket(server);
 
   io.on('connection', (socket) => {
-    console.log('connection');
     socket.on('filter', msg => twitter(msg)
       .then((stream) => {
-        socket.on('disconnect', () => stream.close());
+        socket.on('disconnect', () => {
+          stream.stop()
+        });
         stream.on('tweet', tweet => socket.emit('tweet', tweet));
         stream.on('disconnect', msg => socket.emit('stream_error'));
         stream.on('error', msg => socket.emit('stream_error'));

@@ -3,20 +3,47 @@ import Highcharts from 'highcharts'
 import SolidGaugeChart from 'highcharts/modules/solid-gauge'
 SolidGaugeChart(Highcharts)
 
+import { Bus, StreamService } from '../../services'
+
 export default {
   name: 'StarPlot',
   data: () => ({
     chart: null
   }),
   mounted() {
-    this.chart = this.initChart()
+    this.init()
   },
   beforeDestroy() {
-    this.chart.destroy()
-    this.chart = null
+    this.destroy()
   },
   methods: {
-    initChart() {
+    init() {
+      this.chart = this.initChart(StreamService.tags)
+      Bus.$on('reset', this.onReset)
+      Bus.$on('update', this.onUpdate)
+    },
+    destroy() {
+      Bus.$off('reset', this.onReset)
+      Bus.$off('update', this.onUpdate)
+      this.chart.destroy()
+      this.chart = null
+    },
+    onReset() {
+      let points = this.chart.series[0].points
+      for (let i = 0; i < points.length; i++) {
+        points[i].update(0)
+      }
+    },
+    onUpdate(data) {
+      let count = 0;
+      for (let tag in data.tags) {
+        if (data.tags.hasOwnProperty(tag)) {
+          let point = this.chart.series[0].points[count++]
+          point.update(data.tags[tag].count)
+        }
+      }
+    },
+    initChart(tags) {
       const chart = Highcharts.chart(this.$el, {
 
         chart: {
@@ -38,7 +65,9 @@ export default {
         },
 
         xAxis: {
-          categories: ['#tag1', '#tag2', '#tag3', '#tag4', '#tag5'],
+          categories: tags.map(tag => {
+            return `#${tag}`
+          }),
           tickmarkPlacement: 'on',
           lineWidth: 0
         },
@@ -64,7 +93,7 @@ export default {
         series: [{
           name: 'Tweets',
           type: 'area',
-          data: [43000, 19000, 20000, 35000, 17000],
+          data: tags.map(tag => 0),
           pointPlacement: 'on'
         }]
 

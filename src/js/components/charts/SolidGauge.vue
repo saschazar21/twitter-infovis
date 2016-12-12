@@ -1,26 +1,51 @@
 <script>
 import Highcharts from 'highcharts'
+import Bus from '../../services/bus';
 
 export default {
   name: 'SolidGauge',
   data: () => ({
+    lastTime:  null,
+    lastCount: 0,
     chart: null
   }),
   mounted() {
-    this.chart = this.initChart(200)
+    this.init()
   },
   beforeDestroy() {
-    this.chart.destroy()
-    this.chart = null
+    this.destroy()
   },
   methods: {
+    init() {
+      this.lastTime = Date.now()
+      this.chart = this.initChart()
+      Bus.$on('reset', this.onReset)
+      Bus.$on('update', this.onUpdate)
+    },
+    destroy() {
+      Bus.$off('reset', this.onReset)
+      Bus.$off('update', this.onUpdate)
+      this.chart.destroy()
+      this.chart = null
+    },
+    onReset(tags) {
+
+    },
+    onUpdate(data) {
+      let seconds = (Date.now() - this.lastTime) / 1000;
+      let perSecond = (data.count - this.lastCount) / seconds;
+      let point = this.chart.series[0].points[0]
+      this.lastCount = data.count
+      this.lastTime = Date.now()
+      point.update(Math.round(perSecond * 100) / 100)
+    },
     initChart(max) {
       let gaugeOptions = this.getChartOptions()
 
       const chart = Highcharts.chart(this.$el, Highcharts.merge(gaugeOptions, {
         yAxis: {
           min: 0,
-          max: max || 100,
+          max: max || 10,
           title: {
             text: ''
           }
@@ -63,6 +88,8 @@ export default {
       //   //   max: newVal + 100
       //   // })
       // }, 2000)
+
+      return chart
     },
     getChartOptions() {
       return {
@@ -120,8 +147,6 @@ export default {
           }
         }
       }
-
-      return chart
     }
   }
 }

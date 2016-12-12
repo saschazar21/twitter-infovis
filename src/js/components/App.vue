@@ -13,7 +13,7 @@ export default {
   components: {
     AppNav: Nav
   },
-  beforeCreate() {
+  created() {
     Socket.on('connect', err => {
       this.resetError()
     })
@@ -36,13 +36,12 @@ export default {
     })
 
     Socket.on('reconnect_attempt', () => {
-      this.errorModalVisible = true
+
     })
 
     Socket.on('reconnecting', number => {
       this.errorMessage = 'Socket connection lost.'
       this.errorDetail = `Trying to reconnect now... (attempt ${number})`
-      this.errorModalVisible = true
     })
 
     Socket.on('reconnect_error', err => {
@@ -60,7 +59,7 @@ export default {
 
     Socket.on('stream_error', () => {
       this.errorMessage = 'There was an error with the Twitter stream.'
-      this.errorDetail = 'Please try to reload the page.'
+      this.errorDetail = 'There may be too many concurrent connectins.'
       this.errorModalVisible = true
     })
   },

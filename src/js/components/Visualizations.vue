@@ -1,4 +1,6 @@
 <script>
+import Bus from '../services/bus'
+
 import Controls from './Controls.vue'
 import Card from './Card.vue';
 
@@ -20,15 +22,31 @@ export default {
     ChartWorldMap: WorldMap
   },
   data: () => ({
-
-  })
+    visualsActive: false
+  }),
+  created() {
+    Bus.$on('start', this.onStart)
+    Bus.$on('end', this.onEnd)
+  },
+  beforeDestroy() {
+    Bus.$off('start', this.onStart)
+    Bus.$off('end', this.onEnd)
+  },
+  methods: {
+    onStart() {
+      this.visualsActive = true
+    },
+    onEnd() {
+      this.visualsActive = false
+    }
+  }
 }
 </script>
 
 <template>
 <div>
   <app-controls></app-controls>
-  <div class="row">
+  <div class="row" v-if="visualsActive">
     <transition name="card1" appear>
       <app-card size="s12 m6">
         <div slot="content">
@@ -76,22 +94,22 @@ export default {
 <style scoped>
 .card1-enter-active {
   opacity: 0;
-  animation: fadeIn 0.6s ease 1.8s;
+  animation: fadeIn 0.6s ease 0s;
 }
 .card2-enter-active {
   opacity: 0;
-  animation: fadeIn 0.6s ease 2s;
+  animation: fadeIn 0.6s ease 0.2s;
 }
 .card3-enter-active {
   opacity: 0;
-  animation: fadeIn 0.6s ease 2.2s;
+  animation: fadeIn 0.6s ease 0.4s;
 }
 .card4-enter-active {
   opacity: 0;
-  animation: fadeIn 0.6s ease 2.4s;
+  animation: fadeIn 0.6s ease 0.6s;
 }
 .card5-enter-active {
   opacity: 0;
-  animation: fadeIn 0.6s ease 2.6s;
+  animation: fadeIn 0.6s ease 0.8s;
 }
 </style>

@@ -1,5 +1,6 @@
 <script>
 import Highcharts from 'highcharts'
+import { Bus, StreamService } from '../../services'
 
 export default {
   name: 'Bar',
@@ -7,14 +8,54 @@ export default {
     chart: null
   }),
   mounted() {
-    this.chart = this.initChart()
+    this.init()
+    Bus.$on('reset', this.onReset)
+    Bus.$on('update', this.onUpdate)
   },
   beforeDestroy() {
+    Bus.$off('reset', this.onReset)
+    Bus.$off('update', this.onUpdate)
     this.chart.destroy()
     this.chart = null
   },
   methods: {
-    initChart() {
+    init(tags) {
+      this.chart = this.initChart(StreamService.tags)
+    },
+    onReset() {
+      let points = this.chart.series[0].points
+      for (let i = 0; i < points.length; i++) {
+        points[i].update(0)
+      }
+    },
+    onUpdate(data) {
+      let count = 0;
+      for (let tag in data.tags) {
+        if (data.tags.hasOwnProperty(tag)) {
+          let point = this.chart.series[0].points[count++]
+          point.update(data.tags[tag].count)
+        }
+      }
+    },
+    initChart(tags) {
+      let colors = [
+        'rgb(136, 179, 231)',
+        'rgb(166, 234, 138)',
+        'rgb(235, 167, 104)',
+        'rgb(224, 102, 129)',
+        'rgb(75, 142, 142)'
+      ];
+
+      let count = 0;
+      let data = tags.map((tag) => {
+        return {
+          name: `#${tag}`,
+          y: 0,
+          drilldown: `#${tag}`,
+          color: count < colors.length ? colors[count++] : '#000'
+        }
+      })
+
       const chart = Highcharts.chart(this.$el, {
         chart: {
           type: 'column'
@@ -58,32 +99,7 @@ export default {
         series: [{
           name: 'Tweets',
           colorByPoint: true,
-          data: [{
-            name: '#tag1',
-            y: 56,
-            drilldown: '#tag1',
-            color: 'rgb(136, 179, 231)'
-          }, {
-            name: '#tag2',
-            y: 33,
-            drilldown: '#tag2',
-            color: 'rgb(166, 234, 138)'
-          }, {
-            name: '#tag3',
-            y: 10,
-            drilldown: '#tag3',
-            color: 'rgb(235, 167, 104)'
-          }, {
-            name: '#tag4',
-            y: 8,
-            drilldown: '#tag4',
-            color: 'rgb(224, 102, 129)'
-          }, {
-            name: '#tag5',
-            y: 24,
-            drilldown: '#tag5',
-            color: 'rgb(75, 142, 142)'
-          }]
+          data: data
         }]
       })
 

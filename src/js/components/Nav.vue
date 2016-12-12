@@ -1,6 +1,16 @@
 <script>
+import StreamService from '../services/stream'
+
 export default {
-  name: 'Nav'
+  name: 'Nav',
+  methods: {
+    end() {
+      StreamService.end()
+    },
+    reset() {
+      StreamService.reset()
+    }
+  }
 }
 </script>
 
@@ -15,8 +25,8 @@ export default {
           </a>
           <ul class="right">
             <li><a class="menuitem"><i class="material-icons teal-text text-lighten-1">info_outline</i></a></li>
-            <li><a class="menuitem"><i class="material-icons blue-grey-text">refresh</i></a></li>
-            <li><a class="menuitem"><i class="material-icons red-text">close</i></a></li>
+            <li><a class="menuitem"><i class="material-icons blue-grey-text" @click="reset">refresh</i></a></li>
+            <li><a class="menuitem"><i class="material-icons red-text" @click="end">close</i></a></li>
             <li class="github-button"><a href="https://github.com/fabiandev/vue-twitter-stream-app" target="_blank" class="waves-effect waves-light btn"><i class="material-icons left">code</i>GitHub</a></li>
           </ul>
           <div class="progress">

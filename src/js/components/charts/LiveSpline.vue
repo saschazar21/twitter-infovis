@@ -1,19 +1,53 @@
 <script>
 import Highcharts from 'highcharts'
+import Bus from '../../services/bus'
 
 export default {
   name: 'LiveSpline',
   data: () => ({
-    chart: null
+    chart: null,
+    lastTime: null,
+    lastCount: 0
   }),
   mounted() {
-    this.chart = this.initChart()
+    this.init()
   },
   beforeDestroy() {
-    this.chart.destroy()
-    this.chart = null
+    this.destroy()
   },
   methods: {
+    init() {
+      this.lastTime = Date.now()
+      this.chart = this.initChart()
+      Bus.$on('reset', this.onReset)
+      Bus.$on('update', this.onUpdate)
+    },
+    destroy() {
+      Bus.$off('reset', this.onReset)
+      Bus.$off('update', this.onUpdate)
+      this.chart.destroy()
+      this.chart = null
+    },
+    onReset(tags) {
+
+    },
+    onUpdate(data) {
+      let seconds = (Date.now() - this.lastTime) / 1000;
+      let perSecond = (data.count - this.lastCount) / seconds;
+      let point = this.chart.series[0].points[0]
+      point.update(Math.round(perSecond * 100) / 100)
+      this.lastCount = data.count
+      this.lastTime = Date.now()
+      let series = this.chart.series[0];
+      series.addPoint(
+        [
+          (new Date()).getTime(),
+          Math.round(perSecond * 100) / 100
+        ],
+        true,
+        true
+      )
+    },
     initChart() {
       Highcharts.setOptions({
         global: {
@@ -54,7 +88,7 @@ export default {
           formatter: function() {
             return '<b>' + this.series.name + '</b><br/>' +
               Highcharts.dateFormat('%H:%M:%S', this.x) + '<br/>' +
-              Highcharts.numberFormat(this.y, 0);
+              'Ø ' + Highcharts.numberFormat(this.y, 0) + '/s';
           }
         },
         legend: {
@@ -82,13 +116,6 @@ export default {
         }]
       })
 
-      // let series = chart.series[0];
-      // setInterval(() => {
-      //   let x = (new Date()).getTime() // current time
-      //   let y = Math.round(Math.random() * 10)
-      //   series.addPoint([x, y], true, true)
-      // }, 1000)
-
       return chart
     }
   }
@@ -96,5 +123,6 @@ export default {
 </script>
 
 <template>
-<div></div>
+<div>
+</div>
 </template>

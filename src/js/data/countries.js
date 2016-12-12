@@ -1,0 +1,643 @@
+export default [{
+  code: "AF",
+  z: null
+}, {
+  code: "AL",
+  z: null
+}, {
+  code: "DZ",
+  z: null
+}, {
+  code: "AS",
+  z: null
+}, {
+  code: "ADO",
+  z: null
+}, {
+  code: "AO",
+  z: null
+}, {
+  code: "AG",
+  z: null
+}, {
+  code: "AR",
+  z: null
+}, {
+  code: "AM",
+  z: null
+}, {
+  code: "AW",
+  z: null
+}, {
+  code: "AU",
+  z: null
+}, {
+  code: "AT",
+  z: null
+}, {
+  code: "AZ",
+  z: null
+}, {
+  code: "BS",
+  z: null
+}, {
+  code: "BH",
+  z: null
+}, {
+  code: "BD",
+  z: null
+}, {
+  code: "BB",
+  z: null
+}, {
+  code: "BY",
+  z: null
+}, {
+  code: "BE",
+  z: null
+}, {
+  code: "BZ",
+  z: null
+}, {
+  code: "BJ",
+  z: null
+}, {
+  code: "BM",
+  z: null
+}, {
+  code: "BT",
+  z: null
+}, {
+  code: "BO",
+  z: null
+}, {
+  code: "BA",
+  z: null
+}, {
+  code: "BW",
+  z: null
+}, {
+  code: "BR",
+  z: null
+}, {
+  code: "BN",
+  z: null
+}, {
+  code: "BG",
+  z: null
+}, {
+  code: "BF",
+  z: null
+}, {
+  code: "BI",
+  z: null
+}, {
+  code: "CV",
+  z: null
+}, {
+  code: "KH",
+  z: null
+}, {
+  code: "CM",
+  z: null
+}, {
+  code: "CA",
+  z: null
+}, {
+  code: "KY",
+  z: null
+}, {
+  code: "CF",
+  z: null
+}, {
+  code: "TD",
+  z: null
+}, {
+  code: "CHI",
+  z: null
+}, {
+  code: "CL",
+  z: null
+}, {
+  code: "CN",
+  z: null
+}, {
+  code: "CO",
+  z: null
+}, {
+  code: "KM",
+  z: null
+}, {
+  code: "ZAR",
+  z: null
+}, {
+  code: "CG",
+  z: null
+}, {
+  code: "CR",
+  z: null
+}, {
+  code: "CI",
+  z: null
+}, {
+  code: "HR",
+  z: null
+}, {
+  code: "CU",
+  z: null
+}, {
+  code: "CW",
+  z: null
+}, {
+  code: "CY",
+  z: null
+}, {
+  code: "CZ",
+  z: null
+}, {
+  code: "DK",
+  z: null
+}, {
+  code: "DJ",
+  z: null
+}, {
+  code: "DM",
+  z: null
+}, {
+  code: "DO",
+  z: null
+}, {
+  code: "EC",
+  z: null
+}, {
+  code: "EG",
+  z: null
+}, {
+  code: "SV",
+  z: null
+}, {
+  code: "GQ",
+  z: null
+}, {
+  code: "ER",
+  z: null
+}, {
+  code: "EE",
+  z: null
+}, {
+  code: "ET",
+  z: null
+}, {
+  code: "FO",
+  z: null
+}, {
+  code: "FJ",
+  z: null
+}, {
+  code: "FI",
+  z: null
+}, {
+  code: "FR",
+  z: null
+}, {
+  code: "PF",
+  z: null
+}, {
+  code: "GA",
+  z: null
+}, {
+  code: "GM",
+  z: null
+}, {
+  code: "GE",
+  z: null
+}, {
+  code: "DE",
+  z: null
+}, {
+  code: "GH",
+  z: null
+}, {
+  code: "GR",
+  z: null
+}, {
+  code: "GL",
+  z: null
+}, {
+  code: "GD",
+  z: null
+}, {
+  code: "GU",
+  z: null
+}, {
+  code: "GT",
+  z: null
+}, {
+  code: "GN",
+  z: null
+}, {
+  code: "GW",
+  z: null
+}, {
+  code: "GY",
+  z: null
+}, {
+  code: "HT",
+  z: null
+}, {
+  code: "HN",
+  z: null
+}, {
+  code: "HK",
+  z: null
+}, {
+  code: "HU",
+  z: null
+}, {
+  code: "IS",
+  z: null
+}, {
+  code: "IN",
+  z: null
+}, {
+  code: "ID",
+  z: null
+}, {
+  code: "IR",
+  z: null
+}, {
+  code: "IQ",
+  z: null
+}, {
+  code: "IE",
+  z: null
+}, {
+  code: "IMY",
+  z: null
+}, {
+  code: "IL",
+  z: null
+}, {
+  code: "IT",
+  z: null
+}, {
+  code: "JM",
+  z: null
+}, {
+  code: "JP",
+  z: null
+}, {
+  code: "JO",
+  z: null
+}, {
+  code: "KZ",
+  z: null
+}, {
+  code: "KE",
+  z: null
+}, {
+  code: "KI",
+  z: null
+}, {
+  code: "KP",
+  z: null
+}, {
+  code: "KR",
+  z: null
+}, {
+  code: "KSV",
+  z: null
+}, {
+  code: "KW",
+  z: null
+}, {
+  code: "KG",
+  z: null
+}, {
+  code: "LA",
+  z: null
+}, {
+  code: "LV",
+  z: null
+}, {
+  code: "LB",
+  z: null
+}, {
+  code: "LS",
+  z: null
+}, {
+  code: "LR",
+  z: null
+}, {
+  code: "LY",
+  z: null
+}, {
+  code: "LI",
+  z: null
+}, {
+  code: "LT",
+  z: null
+}, {
+  code: "LU",
+  z: null
+}, {
+  code: "MO",
+  z: null
+}, {
+  code: "MK",
+  z: null
+}, {
+  code: "MG",
+  z: null
+}, {
+  code: "MW",
+  z: null
+}, {
+  code: "MY",
+  z: null
+}, {
+  code: "MV",
+  z: null
+}, {
+  code: "ML",
+  z: null
+}, {
+  code: "MT",
+  z: null
+}, {
+  code: "MH",
+  z: null
+}, {
+  code: "MR",
+  z: null
+}, {
+  code: "MU",
+  z: null
+}, {
+  code: "MX",
+  z: null
+}, {
+  code: "FM",
+  z: null
+}, {
+  code: "MD",
+  z: null
+}, {
+  code: "MC",
+  z: null
+}, {
+  code: "MN",
+  z: null
+}, {
+  code: "ME",
+  z: null
+}, {
+  code: "MA",
+  z: null
+}, {
+  code: "MZ",
+  z: null
+}, {
+  code: "MM",
+  z: null
+}, {
+  code: "NA",
+  z: null
+}, {
+  code: "NP",
+  z: null
+}, {
+  code: "NL",
+  z: null
+}, {
+  code: "NC",
+  z: null
+}, {
+  code: "NZ",
+  z: null
+}, {
+  code: "NI",
+  z: null
+}, {
+  code: "NE",
+  z: null
+}, {
+  code: "NG",
+  z: null
+}, {
+  code: "MP",
+  z: null
+}, {
+  code: "NO",
+  z: null
+}, {
+  code: "OM",
+  z: null
+}, {
+  code: "PK",
+  z: null
+}, {
+  code: "PW",
+  z: null
+}, {
+  code: "PA",
+  z: null
+}, {
+  code: "PG",
+  z: null
+}, {
+  code: "PY",
+  z: null
+}, {
+  code: "PE",
+  z: null
+}, {
+  code: "PH",
+  z: null
+}, {
+  code: "PL",
+  z: null
+}, {
+  code: "PT",
+  z: null
+}, {
+  code: "PR",
+  z: null
+}, {
+  code: "QA",
+  z: null
+}, {
+  code: "ROM",
+  z: null
+}, {
+  code: "RU",
+  z: null
+}, {
+  code: "RW",
+  z: null
+}, {
+  code: "WS",
+  z: null
+}, {
+  code: "SM",
+  z: null
+}, {
+  code: "ST",
+  z: null
+}, {
+  code: "SA",
+  z: null
+}, {
+  code: "SN",
+  z: null
+}, {
+  code: "RS",
+  z: null
+}, {
+  code: "SC",
+  z: null
+}, {
+  code: "SL",
+  z: null
+}, {
+  code: "SG",
+  z: null
+}, {
+  code: "SX",
+  z: null
+}, {
+  code: "SK",
+  z: null
+}, {
+  code: "SI",
+  z: null
+}, {
+  code: "SB",
+  z: null
+}, {
+  code: "SO",
+  z: null
+}, {
+  code: "ZA",
+  z: null
+}, {
+  code: "SS",
+  z: null
+}, {
+  code: "ES",
+  z: null
+}, {
+  code: "LK",
+  z: null
+}, {
+  code: "KN",
+  z: null
+}, {
+  code: "LC",
+  z: null
+}, {
+  code: "MF",
+  z: null
+}, {
+  code: "VC",
+  z: null
+}, {
+  code: "SD",
+  z: null
+}, {
+  code: "SR",
+  z: null
+}, {
+  code: "SZ",
+  z: null
+}, {
+  code: "SE",
+  z: null
+}, {
+  code: "CH",
+  z: null
+}, {
+  code: "SY",
+  z: null
+}, {
+  code: "TJ",
+  z: null
+}, {
+  code: "TZ",
+  z: null
+}, {
+  code: "TH",
+  z: null
+}, {
+  code: "TMP",
+  z: null
+}, {
+  code: "TG",
+  z: null
+}, {
+  code: "TO",
+  z: null
+}, {
+  code: "TT",
+  z: null
+}, {
+  code: "TN",
+  z: null
+}, {
+  code: "TR",
+  z: null
+}, {
+  code: "TM",
+  z: null
+}, {
+  code: "TC",
+  z: null
+}, {
+  code: "TV",
+  z: null
+}, {
+  code: "UG",
+  z: null
+}, {
+  code: "UA",
+  z: null
+}, {
+  code: "AE",
+  z: null
+}, {
+  code: "GB",
+  z: null
+}, {
+  code: "US",
+  z: null
+}, {
+  code: "UY",
+  z: null
+}, {
+  code: "UZ",
+  z: null
+}, {
+  code: "VU",
+  z: null
+}, {
+  code: "VE",
+  z: null
+}, {
+  code: "VN",
+  z: null
+}, {
+  code: "VI",
+  z: null
+}, {
+  code: "WBG",
+  z: null
+}, {
+  code: "YE",
+  z: null
+}, {
+  code: "ZM",
+  z: null
+}, {
+  code: "ZW",
+  z: null
+}]

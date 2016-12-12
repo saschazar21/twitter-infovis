@@ -57,6 +57,7 @@
     "vue-template-compiler": "^2.1.4",
     "webpack": "^1.13.3",
     "webpack-stream": "^3.2.0",
+    "worker-loader": "^0.7.1",
     "yarn": "^0.17.10"
   }
 }

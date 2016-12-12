@@ -18,6 +18,9 @@ module.exports = {
     }, {
       test: /\.vue$/,
       loader: 'vue'
+    }, {
+      test: /\.worker\.js$/,
+      loader: 'worker?inline=true'
     }]
   },
   plugins: [],
