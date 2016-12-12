@@ -20,7 +20,7 @@ module.exports = {
       loader: 'vue'
     }, {
       test: /\.worker\.js$/,
-      loader: 'worker?inline=true'
+      loader: 'worker?inline=true!babel'
     }]
   },
   plugins: [],

@@ -91,6 +91,7 @@ class StreamService {
   }
 
   destroy() {
+    this.worker.postMessage({cmd: 'close'})
     this.worker.removeEventListener('message', this.onMessage, false)
   }
 

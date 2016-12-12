@@ -1,4 +1,4 @@
-var data = {}
+let data = {}
 
 function init(tags) {
   data = {
@@ -7,7 +7,7 @@ function init(tags) {
     countries: {}
   }
 
-  tags.forEach(function(tag) {
+  tags.forEach(tag => {
     data.tags[tag.toLowerCase()] = {
       count: 0
     }
@@ -18,7 +18,7 @@ function reset() {
   data.count = 0
   data.countries = {}
 
-  for (tag in data.tags) {
+  for (let tag in data.tags) {
     if (data.tags.hasOwnProperty(tag)) {
       data.tags[tag] = {
         count: 0
@@ -32,6 +32,7 @@ function processTweet(tweet) {
 
   if (tweet.place && tweet.place.country_code) {
     let code = tweet.place.country_code
+
     if (!data.countries[code]) {
       data.countries[code] = {
         count: 0
@@ -41,19 +42,19 @@ function processTweet(tweet) {
     data.countries[code].count++
   }
 
-  let tags = tweet.entities.hashtags.map(function(obj) {
+  let tags = tweet.entities.hashtags.map(obj => {
     return obj.text.toLowerCase()
   })
 
-  tags.forEach(function(tag) {
+  tags.forEach(tag => {
     if (!!tag && data.tags.hasOwnProperty(tag)) {
       data.tags[tag].count++
     }
   })
 }
 
-self.addEventListener('message', function(e) {
-  var d = e.data
+self.addEventListener('message', (e) => {
+  let d = e.data
 
   switch (d.cmd) {
     case 'start':
@@ -63,7 +64,9 @@ self.addEventListener('message', function(e) {
       break
     case 'stop':
       reset()
-      // self.close()
+      break
+    case 'close':
+      self.close()
       break
     case 'reset':
       reset()
