@@ -1,17 +1,23 @@
 <script>
-import { AnimationBuilder } from 'css-animator/builder'
-import { Bus, Socket } from '../services'
+import {
+  AnimationBuilder
+} from 'css-animator/builder'
+import {
+  Bus,
+  Socket
+} from '../services'
+import Modal from './Modal.vue'
 import Nav from './Nav.vue'
 
 export default {
   name: 'App',
   data: () => ({
-    errorModalVisible: false,
     errorMessage: 'Sorry, there was an error.',
     errorDetail: ''
   }),
   components: {
-    AppNav: Nav
+    AppNav: Nav,
+    AppModal: Modal
   },
   created() {
     Socket.on('connections', status => {
@@ -27,24 +33,24 @@ export default {
     })
 
     Socket.on('connect', err => {
-      this.resetError()
+      this.hideError()
     })
 
     Socket.on('error', err => {
       this.errorMessage = 'There was an error with the socket connection.'
       this.errorDetail = ''
-      this.errorModalVisible = true
+      this.showError()
     })
 
 
     Socket.on('connect_timeout', () => {
       this.errorMessage = 'Socket connection timed out.'
       this.errorDetail = ''
-      this.errorModalVisible = true
+      this.showError()
     })
 
     Socket.on('reconnect', number => {
-      this.resetError()
+      this.hideError()
     })
 
     Socket.on('reconnect_attempt', () => {
@@ -57,22 +63,22 @@ export default {
     })
 
     Socket.on('reconnect_error', err => {
-      this.errorModalVisible = true
+      this.showError()
     })
 
     Socket.on('reconnect_failed', () => {
       this.errorDetail = 'Reconnecting failed. Please reload the page.'
-      this.errorModalVisible = true
+      this.showError()
     })
 
     Socket.on('stream_recovered', () => {
-      this.resetError()
+      this.hideError()
     })
 
     Socket.on('stream_error', () => {
       this.errorMessage = 'There was an error with the Twitter stream.'
       this.errorDetail = 'There may be too many concurrent connectins.'
-      this.errorModalVisible = true
+      this.showError()
     })
   },
   mounted() {
@@ -92,23 +98,13 @@ export default {
     Socket.removeAllListeners()
   },
   methods: {
-    triggerError(error, detail) {
-      this.setError(error, detail)
-      this.showErrorModal()
+    hideError() {
+      this.$refs.errorModal.hide()
+      this.errorMessage = 'Sorry, there was an error.'
+      this.errorDetail = ''
     },
-    setError(error, detail) {
-      this.errorMessage = error
-      this.errorDetail = detail
-    },
-    resetError() {
-      this.hideErrorModal()
-      this.setError('', '')
-    },
-    showErrorModal() {
-      this.errorModalVisible = true
-    },
-    hideErrorModal() {
-      this.errorModalVisible = false
+    showError() {
+      this.$refs.errorModal.show()
     }
   }
 }
@@ -123,61 +119,22 @@ export default {
     <router-view></router-view>
   </transition>
 
-  <transition name="fade-modal">
-    <div class="error-modal modal open" v-if="errorModalVisible">
-      <div class="modal-content">
-        <h5 class="blue-grey-text">{{ errorMessage }}</h5>
-        <br>
-        <p class="black-text">{{ errorDetail }}</p>
-      </div>
-      <div class="modal-footer">
-        <!-- <span class="modal-action modal-close waves-effect waves-teal btn-flat">Close</span> -->
-        <span class="waves-effect waves-teal btn-flat" onclick="window.location.reload(false)">Reload Page Now</span>
-      </div>
+
+  <app-modal ref="errorModal" :closeButton="false" :canHide="false">
+    <div slot="title">
+      {{ errorMessage }}
     </div>
-  </transition>
-  <transition name="fade-modal-overlay">
-    <div class="modal-overlay" id="materialize-modal-overlay-6" v-if="errorModalVisible"></div>
-  </transition>
+    <div slot="content">
+      {{ errorDetail }}
+    </div>
+    <div slot="footer">
+      <span class="waves-effect waves-teal btn-flat" onclick="window.location.reload(false)">Reload Page Now</span>
+    </div>
+  </app-modal>
 </div>
 </template>
 
 <style scoped>
-.error-modal {
-  z-index: 1003;
-  display: block;
-  opacity: 1;
-  transform: scaleX(1);
-  top: 10%;
-}
-
-.modal-overlay {
-  z-index: 1002;
-  display: block;
-  opacity: 1;
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.fade-modal-enter-active {
-  opacity: 0;
-  animation: fadeInUp 0.5s;
-}
-
-.fade-modal-overlay-enter-active {
-  opacity: 0;
-  animation: fadeIn 0.3s;
-}
-
-.fade-modal-leave-active {
-  opacity: 0;
-  animation: fadeOutDown 0.3s;
-}
-
-.fade-modal-overlay-leave-active {
-  opacity: 0;
-  animation: fadeOut 0.3s;
-}
-
 .fade-nav-enter-active {
   opacity: 0;
   animation: fadeInDown 0.8s ease 0.8s;

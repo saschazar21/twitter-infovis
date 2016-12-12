@@ -1,10 +1,16 @@
 <script>
-import { Bus, StreamService } from '../services'
+import {
+  Bus,
+  StreamService
+} from '../services'
+import Modal from './Modal.vue'
 
 export default {
   name: 'Nav',
+  components: {
+    AppModal: Modal
+  },
   data: () => ({
-    infoModalVisible: false,
     streamActive: false,
     resetting: false
   }),
@@ -41,10 +47,7 @@ export default {
       }, 200)
     },
     showInfo() {
-      this.infoModalVisible = true
-    },
-    hideInfo() {
-      this.infoModalVisible = false
+      this.$refs.infoModal.show()
     }
   }
 }
@@ -73,32 +76,22 @@ export default {
     </div>
   </div>
 
-  <transition name="fade-modal">
-    <div class="info-modal modal open" v-if="infoModalVisible">
-      <div class="modal-content">
-        <h5 class="blue-grey-text">Information Visualization Project</h5>
-        <br>
-        <p class="black-text">
-          This is a project for the course <strong>Information Visualisation</strong> at the <a href="https://www.fh-ooe.at/en/hagenberg-campus/studiengaenge/master/interactive-media/" target="_blank">University of Applied Sciences Upper Austria Campus Hagenberg</a> by <strong>Fabian Pirklbauer</strong> and <strong>Sascha Zarhuber</strong>.
-          To learn more about the project, please head over to our <a href="https://github.com/fabiandev/vue-twitter-stream-app" target="_blank">repository on GitHub</a>.
-        </p>
-      </div>
-      <div class="modal-footer">
-        <span class="modal-action modal-close waves-effect waves-teal btn-flat" @click="hideInfo">Close</span>
-      </div>
+  <app-modal ref="infoModal" :closeButton="true" :canHide="true">
+    <div slot="title">
+      Information Visualization Project
     </div>
-  </transition>
-  <transition name="fade-modal-overlay">
-    <div class="modal-overlay" id="materialize-modal-overlay-6" v-if="infoModalVisible" @click="hideInfo"></div>
-  </transition>
+    <div slot="content">
+      This is a project for the course <strong>Information Visualisation</strong> at the <a href="https://www.fh-ooe.at/en/hagenberg-campus/studiengaenge/master/interactive-media/" target="_blank">University of Applied Sciences Upper Austria Campus Hagenberg</a>      by <strong>Fabian Pirklbauer</strong> and <strong>Sascha Zarhuber</strong>. To learn more about the project, please head over to our <a href="https://github.com/fabiandev/vue-twitter-stream-app" target="_blank">repository on GitHub</a>.
+    </div>
+  </app-modal>
 </div>
 </template>
 
 <style scoped>
 @keyframes ldboxrotate {
   to {
-		transform: rotate(1turn);
-	}
+    transform: rotate(1turn);
+  }
 }
 
 .resetting {
@@ -176,40 +169,5 @@ a.brand-logo {
   .github-button {
     display: none;
   }
-}
-
-.info-modal {
-  z-index: 1003;
-  display: block;
-  opacity: 1;
-  transform: scaleX(1);
-  top: 10%;
-}
-
-.modal-overlay {
-  z-index: 1002;
-  display: block;
-  opacity: 1;
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.fade-modal-enter-active {
-  opacity: 0;
-  animation: fadeInUp 0.5s;
-}
-
-.fade-modal-overlay-enter-active {
-  opacity: 0;
-  animation: fadeIn 0.3s;
-}
-
-.fade-modal-leave-active {
-  opacity: 0;
-  animation: fadeOutDown 0.3s;
-}
-
-.fade-modal-overlay-leave-active {
-  opacity: 0;
-  animation: fadeOut 0.3s;
 }
 </style>

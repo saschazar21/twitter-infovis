@@ -1,8 +1,5 @@
 <script>
 import Highcharts from 'highcharts'
-import SolidGaugeChart from 'highcharts/modules/solid-gauge'
-SolidGaugeChart(Highcharts)
-
 import { Bus, StreamService } from '../../services'
 
 export default {
