@@ -1,12 +1,27 @@
 <script>
-import StreamService from '../services/stream'
+import { Bus, StreamService } from '../services'
 
 export default {
   name: 'Nav',
   data: () => ({
-    infoModalVisible: false
+    infoModalVisible: false,
+    streamActive: false
   }),
+  created() {
+    Bus.$on('start', this.onStart)
+    Bus.$on('end', this.onEnd)
+  },
+  beforeDestroy() {
+    Bus.$off('start', this.onStart)
+    Bus.$off('end', this.onEnd)
+  },
   methods: {
+    onStart() {
+      this.streamActive = true
+    },
+    onEnd() {
+      this.streamActive = false
+    },
     end() {
       StreamService.end()
     },
@@ -34,8 +49,8 @@ export default {
           </a>
           <ul class="right">
             <li><a class="menuitem"><i class="material-icons teal-text text-lighten-1" @click="showInfo">info_outline</i></a></li>
-            <li><a class="menuitem"><i class="material-icons blue-grey-text" @click="reset">refresh</i></a></li>
-            <li><a class="menuitem"><i class="material-icons red-text" @click="end">close</i></a></li>
+            <li><a class="menuitem" :class="{ disabled: !streamActive }"><i class="material-icons" :class="{ 'blue-grey-text': streamActive, 'grey-text': !streamActive }" @click="reset">refresh</i></a></li>
+            <li><a class="menuitem" :class="{ disabled: !streamActive }"><i class="material-icons" :class="{ 'red-text': streamActive, 'grey-text': !streamActive }" @click="end">close</i></a></li>
             <li class="github-button"><a href="https://github.com/fabiandev/vue-twitter-stream-app" target="_blank" class="waves-effect waves-light btn"><i class="material-icons left">code</i>GitHub</a></li>
           </ul>
           <div class="progress">
@@ -68,6 +83,11 @@ export default {
 </template>
 
 <style scoped>
+a.menuitem.disabled:hover {
+  background: transparent;
+  cursor: default;
+}
+
 .progress {
   position: absolute;
   border-radius: 0;
