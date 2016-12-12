@@ -10,15 +10,20 @@ export default {
     value: '',
     streamActive: false,
     connectedClients: 0,
-    streamOccupied: false
+    streamOccupied: false,
+    numTweets: 0
   }),
   created() {
+    Bus.$on('tweet', this.onTweet)
     Bus.$on('end', this.onEnd)
+    Bus.$on('reset', this.onReset)
     Bus.$on('stream_status', this.onStreamStatus)
     Bus.$on('connections', this.onConnections)
   },
   beforeDestroy() {
+    Bus.$off('tweet', this.onTweet)
     Bus.$off('end', this.onEnd)
+    Bus.$off('reset', this.onReset)
     Bus.$off('stream_status', this.onStreamStatus)
     Bus.$off('connections', this.onConnections)
   },
@@ -37,7 +42,14 @@ export default {
       this.streamOccupied = status.streamActive
     },
     onEnd() {
+      this.numTweets = 0
       this.streamActive = false
+    },
+    onReset() {
+      this.numTweets = 0
+    },
+    onTweet() {
+      this.numTweets++
     },
     startStream() {
       this.streamActive = true
@@ -122,7 +134,7 @@ export default {
             </div>
             <div v-else class="col s12 center-align">
               <div class="center-align grey-text text-lighten-1">
-                <a class="btn-flat disabled">Stream is active <i><div class="loader running"></i></a>
+                <a class="btn-flat disabled">Stream is active, counting {{ numTweets }} tweets <i><div class="loader running"></i></a>
               </div>
             </div>
           </div>

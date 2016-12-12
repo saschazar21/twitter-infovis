@@ -13,11 +13,11 @@ class StreamService {
     this.tags = []
     this.worker = new StreamWorker()
     this.forceUpdate = this.forceUpdate.bind(this)
-    this.onMessage = this.onMessage.bind(this)
+    this.onBroadcast = this.onBroadcast.bind(this)
     this.onUpdate = this.onUpdate.bind(this)
     this.onTweet = this.onTweet.bind(this)
     this.updateInterval = interval(this.forceUpdate, 5500)
-    this.worker.addEventListener('message', this.onMessage, false)
+    this.worker.addEventListener('message', this.onBroadcast, false)
     this.onUpdate = debounce(this.onUpdate, 1000)
   }
 
@@ -31,10 +31,6 @@ class StreamService {
       tags: tags
     })
 
-    this.worker.postMessage({
-      cmd: 'start'
-    })
-
     Socket.emit('filter', {
       track: tags.map((value) => {
         return `#${value}`
@@ -46,30 +42,33 @@ class StreamService {
     Bus.$emit('start', tags);
   }
 
-  restart() {
-    Bus.$emit('restart');
-  }
-
   reset() {
+    Bus.$emit('reset', this.tags)
     this.worker.postMessage({cmd: 'reset'})
     this.worker.postMessage({cmd: 'broadcast'})
-    Bus.$emit('reset')
   }
 
   end() {
     this.updateInterval.stop()
+
     Socket.off('tweet', this.onTweet)
+
     this.worker.postMessage({
       cmd: 'stop'
     })
+
     Socket.disconnect()
+
     setTimeout(() => {
       Socket.connect()
     }, 1000)
+
     Bus.$emit('end')
   }
 
   onTweet(tweet) {
+    Bus.$emit('tweet', tweet)
+
     this.worker.postMessage({
       cmd: 'tweet',
       tweet
@@ -82,8 +81,14 @@ class StreamService {
     this.worker.postMessage({'cmd': 'broadcast'})
   }
 
-  onMessage(e) {
-    Bus.$emit('update', e.data)
+  onBroadcast(e) {
+    let data = e.data
+
+    if (data.cmd !== 'data') {
+      return
+    }
+
+    Bus.$emit('update', data.data)
   }
 
   forceUpdate() {

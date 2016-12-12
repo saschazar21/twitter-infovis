@@ -5,13 +5,16 @@ export default {
   name: 'Nav',
   data: () => ({
     infoModalVisible: false,
-    streamActive: false
+    streamActive: false,
+    resetting: false
   }),
   created() {
+    Bus.$on('reset', this.onReset)
     Bus.$on('start', this.onStart)
     Bus.$on('end', this.onEnd)
   },
   beforeDestroy() {
+    Bus.$off('reset', this.onReset)
     Bus.$off('start', this.onStart)
     Bus.$off('end', this.onEnd)
   },
@@ -22,11 +25,20 @@ export default {
     onEnd() {
       this.streamActive = false
     },
+    onReset() {
+      this.resetting = false
+    },
     end() {
-      StreamService.end()
+      this.streamActive = false
+      setTimeout(() => {
+        StreamService.end()
+      })
     },
     reset() {
-      StreamService.reset()
+      this.resetting = true
+      setTimeout(() => {
+        StreamService.reset()
+      }, 200)
     },
     showInfo() {
       this.infoModalVisible = true
@@ -49,7 +61,7 @@ export default {
           </a>
           <ul class="right">
             <li><a class="menuitem"><i class="material-icons teal-text text-lighten-1" @click="showInfo">info_outline</i></a></li>
-            <li><a class="menuitem" :class="{ disabled: !streamActive }"><i class="material-icons" :class="{ 'blue-grey-text': streamActive, 'grey-text': !streamActive }" @click="reset">refresh</i></a></li>
+            <li><a class="menuitem" :class="{ resetting: resetting, disabled: resetting || !streamActive }"><i class="material-icons" :class="{ 'blue-grey-text': !resetting && streamActive, 'grey-text': resetting || !streamActive }" @click="reset">refresh</i></a></li>
             <li><a class="menuitem" :class="{ disabled: !streamActive }"><i class="material-icons" :class="{ 'red-text': streamActive, 'grey-text': !streamActive }" @click="end">close</i></a></li>
             <li class="github-button"><a href="https://github.com/fabiandev/vue-twitter-stream-app" target="_blank" class="waves-effect waves-light btn"><i class="material-icons left">code</i>GitHub</a></li>
           </ul>
@@ -83,6 +95,25 @@ export default {
 </template>
 
 <style scoped>
+@keyframes ldboxrotate {
+  to {
+		transform: rotate(1turn);
+	}
+}
+
+.resetting {
+  animation-fill-mode: both;
+  animation-name: ldboxrotate;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  animation-duration: 0.8s;
+}
+
+a.menuitem.disabled {
+  transition: none;
+}
+
 a.menuitem.disabled:hover {
   background: transparent;
   cursor: default;

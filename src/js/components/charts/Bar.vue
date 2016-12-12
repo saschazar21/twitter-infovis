@@ -12,11 +12,13 @@ export default {
     Bus.$on('reset', this.onReset)
     Bus.$on('update', this.onUpdate)
   },
-  beforeDestroy() {
+  destroyed() {
     Bus.$off('reset', this.onReset)
     Bus.$off('update', this.onUpdate)
-    this.chart.destroy()
-    this.chart = null
+    setTimeout(() => {
+      this.chart.destroy()
+      this.chart = null
+    }, 1000)
   },
   methods: {
     init(tags) {

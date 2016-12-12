@@ -12,7 +12,7 @@ export default {
   mounted() {
     this.init()
   },
-  beforeDestroy() {
+  destroyed() {
     this.destroy()
   },
   methods: {
@@ -25,11 +25,14 @@ export default {
     destroy() {
       Bus.$off('reset', this.onReset)
       Bus.$off('update', this.onUpdate)
-      this.chart.destroy()
-      this.chart = null
+      setTimeout(() => {
+        this.chart.destroy()
+        this.chart = null
+      }, 1000)
     },
     onReset(tags) {
-
+      this.lastTime = Date.now()
+      this.lastCount = 0
     },
     onUpdate(data) {
       let seconds = (Date.now() - this.lastTime) / 1000;

@@ -46,70 +46,78 @@ export default {
 <template>
 <div>
   <app-controls></app-controls>
-  <div class="row" v-if="visualsActive">
-    <transition name="card1" appear>
-      <app-card size="s12 m6">
-        <div slot="content">
-          <chart-solid-gauge></chart-solid-gauge>
-        </div>
-      </app-card>
-    </transition>
+  <transition name="container">
+    <div class="row" v-if="visualsActive">
+      <transition name="card1" appear>
+        <app-card size="s12 m6">
+          <div slot="content">
+            <chart-solid-gauge></chart-solid-gauge>
+          </div>
+        </app-card>
+      </transition>
 
-    <transition name="card2" appear>
-      <app-card size="s12 m6">
-        <div slot="content">
-          <chart-star-plot></chart-star-plot>
-        </div>
-      </app-card>
-    </transition>
+      <transition name="card2" appear>
+        <app-card size="s12 m6">
+          <div slot="content">
+            <chart-star-plot></chart-star-plot>
+          </div>
+        </app-card>
+      </transition>
 
-    <transition name="card3" appear>
-      <app-card size="s12 m6">
-        <div slot="content">
-          <chart-live-spline></chart-live-spline>
-        </div>
-      </app-card>
-    </transition>
+      <transition name="card3" appear>
+        <app-card size="s12 m6">
+          <div slot="content">
+            <chart-live-spline></chart-live-spline>
+          </div>
+        </app-card>
+      </transition>
 
-    <transition name="card4" appear>
-      <app-card size="s12 m6">
-        <div slot="content">
-          <chart-bar></chart-bar>
-        </div>
-      </app-card>
-    </transition>
+      <transition name="card4" appear>
+        <app-card size="s12 m6">
+          <div slot="content">
+            <chart-bar></chart-bar>
+          </div>
+        </app-card>
+      </transition>
 
-    <transition name="card5" appear>
-      <app-card size="s12">
-        <div slot="content">
-          <chart-world-map></chart-world-map>
-        </div>
-      </app-card>
-    </transition>
+      <transition name="card5" appear>
+        <app-card size="s12">
+          <div slot="content">
+            <chart-world-map></chart-world-map>
+          </div>
+        </app-card>
+      </transition>
 
-  </div>
+    </div>
+  </transition>
 </div>
 </template>
 
 <style scoped>
+.container-leave-active {
+  animation: fadeOutDown 0.8s ease 0s;
+}
+.container-enter-active {
+  animation: fadeInUp 0.8s ease 0s;
+}
 .card1-enter-active {
-  opacity: 0;
-  animation: fadeIn 0.6s ease 0s;
-}
-.card2-enter-active {
-  opacity: 0;
-  animation: fadeIn 0.6s ease 0.2s;
-}
-.card3-enter-active {
   opacity: 0;
   animation: fadeIn 0.6s ease 0.4s;
 }
-.card4-enter-active {
+.card2-enter-active {
   opacity: 0;
   animation: fadeIn 0.6s ease 0.6s;
 }
+.card3-enter-active {
+  opacity: 0;
+  animation: fadeIn 0.6s ease 0.75s;
+}
+.card4-enter-active {
+  opacity: 0;
+  animation: fadeIn 0.6s ease 0.9s;
+}
 .card5-enter-active {
   opacity: 0;
-  animation: fadeIn 0.6s ease 0.8s;
+  animation: fadeIn 0.6s ease 1s;
 }
 </style>

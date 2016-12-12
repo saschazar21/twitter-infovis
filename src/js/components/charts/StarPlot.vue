@@ -13,7 +13,7 @@ export default {
   mounted() {
     this.init()
   },
-  beforeDestroy() {
+  destroyed() {
     this.destroy()
   },
   methods: {
@@ -25,8 +25,10 @@ export default {
     destroy() {
       Bus.$off('reset', this.onReset)
       Bus.$off('update', this.onUpdate)
-      this.chart.destroy()
-      this.chart = null
+      setTimeout(() => {
+        this.chart.destroy()
+        this.chart = null
+      }, 1000)
     },
     onReset() {
       let points = this.chart.series[0].points

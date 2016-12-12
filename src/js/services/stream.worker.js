@@ -57,25 +57,21 @@ self.addEventListener('message', (e) => {
   let d = e.data
 
   switch (d.cmd) {
-    case 'start':
-      break
     case 'init':
       init(d.tags)
       break
+    case 'reset':
     case 'stop':
       reset()
       break
     case 'close':
       self.close()
       break
-    case 'reset':
-      reset()
-      break
     case 'tweet':
       processTweet(d.tweet)
       break
     case 'broadcast':
-      self.postMessage(data)
+      self.postMessage({ cmd: 'data', data })
       break
   };
 }, false)
