@@ -17,7 +17,7 @@ Now fill in your credentials in `server/.env` and run `yarn start`.
 
 [https://ivapp.herokuapp.com/](https://ivapp.herokuapp.com/)
 
-> Since the app is hosted on a free [Heroku](https://www.heroku.com/) instance, it may need some time to boot up.
+> Since the app is hosted on a free [Heroku](https://www.heroku.com/) instance, it may need some time to boot up.  
 > Please also note, that due to restrictions of the Twitter streaming API, only one concurrent stream is allowed.
 
 *Fun fact:* The app is named "iv", because the course at University, where this project was born,
