@@ -7,10 +7,11 @@ This app will stream live data from the [Twitter Streaming API](https://dev.twit
 ```sh
 $ git clone https://github.com/fabiandev/vue-twitter-stream-app.git
 $ cd vue-twitter-stream-app
-$ yarn && yarn start
+$ cp server/.env.example server/.env
+$ yarn
 ```
 
-> Also copy server/.env.example, rename it to .env and fill in your credentials.
+Now fill in your credentials in `server/.env` and run `yarn start`.
 
 # Live Example
 
