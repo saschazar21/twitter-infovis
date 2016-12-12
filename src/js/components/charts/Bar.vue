@@ -103,12 +103,6 @@ export default {
         }]
       })
 
-      // setInterval(() => {
-      //   let point = chart.series[0].points[0]
-      //   let newVal = point.y + 2
-      //   point.update(newVal)
-      // }, 1000)
-
       return chart
     }
   }

@@ -80,15 +80,6 @@ export default {
 
       }))
 
-      // setInterval(() => {
-      //   let point = chart.series[0].points[0]
-      //   let newVal = point.y + 20
-      //   point.update(newVal)
-      //   // chart.yAxis[0].update({
-      //   //   max: newVal + 100
-      //   // })
-      // }, 2000)
-
       return chart
     },
     getChartOptions() {

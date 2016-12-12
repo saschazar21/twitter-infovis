@@ -83,13 +83,6 @@ export default {
           pointFormat: '<span><b>{point.y:,.0f}</b> tweets<br/>'
         },
 
-        // legend: {
-        //   align: 'right',
-        //   verticalAlign: 'top',
-        //   y: 70,
-        //   layout: 'vertical'
-        // },
-
         series: [{
           name: 'Tweets',
           type: 'area',
@@ -98,17 +91,6 @@ export default {
         }]
 
       })
-
-      // setInterval(() => {
-      //   let point = chart.series[0].points[0]
-      //   let point2 = chart.series[0].points[1]
-      //   let newVal = point.y + 10000
-      //   let newVal2 = point2.y + 5000
-      //   point.update(newVal)
-      //   setTimeout(() => {
-      //     point2.update(newVal2)
-      //   }, 500)
-      // }, 2000)
 
       return chart
     }

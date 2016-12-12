@@ -1,3 +1,6 @@
+import 'core-js/fn/array/find-index'
+import 'core-js/fn/object/keys'
+
 import Highcharts from 'highcharts'
 import HighchartsMore from 'highcharts-more'
 import SolidGaugeChart from 'highcharts/modules/solid-gauge'

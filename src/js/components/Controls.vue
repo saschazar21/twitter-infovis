@@ -167,7 +167,7 @@ export default {
 
 .button-placeholder {
   margin-top: 15px;
-  width: 400px;
+  max-width: 400px;
   height: 36px;
   left: 50%;
   margin-left: auto;
