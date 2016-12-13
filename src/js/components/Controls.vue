@@ -1,5 +1,8 @@
 <script>
-import { Bus, StreamService } from '../services'
+import {
+  Bus,
+  StreamService
+} from '../services'
 
 export default {
   name: 'Controls',
@@ -11,7 +14,9 @@ export default {
     streamActive: false,
     connectedClients: 0,
     streamOccupied: false,
-    numTweets: 0
+    numTweets: 0,
+    chipsLimit: 10,
+    chipsLimitText: 'ten'
   }),
   created() {
     Bus.$on('tweet', this.onTweet)
@@ -56,9 +61,17 @@ export default {
       StreamService.start(this.chips)
     },
     addChip() {
-      // TODO: Parse valid hashtag from passed string
-      this.chips.push(this.value.trim().replace(/^(#)/, '').replace(/\s+/g, ''))
+      let split = this.value.trim().split(' ')
       this.value = ''
+      let maxLen = this.chipsLimit - this.chips.length
+      for (let i = 0; i < split.length; i++) {
+        if (i >= maxLen) break
+        // TODO: Parse valid hashtag from passed string
+        let tag = split[i].trim().replace(/#/gi, '')
+        let lower = this.chips.map(entry => entry.toLowerCase())
+        if (lower.indexOf(tag.toLowerCase()) !== -1) continue
+        this.chips.push(tag)
+      }
     },
     removeChip(index) {
       this.chips.splice(index, 1)
@@ -74,7 +87,7 @@ export default {
   },
   computed: {
     limitReached() {
-      return this.chips.length >= 5
+      return this.chips.length >= this.chipsLimit
     },
     placeholderText() {
       if (this.limitReached) {
@@ -100,7 +113,7 @@ export default {
           <span class="card-title cyan-text">Choose Twitter Tags</span>
 
           <blockquote>
-            Enter up to five tags below and we'll stream live data from the
+            Enter up to {{ chipsLimitText }} tags below and we'll stream live data from the
             <a class="btn-flat" href="https://dev.twitter.com/streaming/overview" target="_blank">Twitter API</a> to visualize it with the power of <a class="btn-flat" href="https://vuejs.org" target="_blank">Vue</a> and <a class="btn-flat" href="http://www.highcharts.com"
                 target="_blank">Highcharts</a> for you. Enjoy <span class="red-text text-lighten-2">&hearts;</span>
           </blockquote>
@@ -112,8 +125,8 @@ export default {
                 <div class="chip" v-for="(chip, index) in chips">
                   #{{ chip }}<i v-show="!streamActive" class="material-icons close" @click="removeChip(index)">close</i>
                 </div>
-                <input class="input" ref="tagsInput" :readonly="limitReached" :placeholder="placeholderText" :style="{ width: !chips.length ? '250px !important' : limitReached || streamActive ? '0 !important' : '120px !important' }" @keydown.enter="addChip" @keydown.delete="removePrevChip"
-                    v-model="value" maxlength="30">
+                <input class="input" ref="tagsInput" :readonly="limitReached" :placeholder="placeholderText" :style="{ width: !chips.length ? '250px !important' : limitReached || streamActive ? '0 !important' : '120px !important' }" @keydown.enter.prevent="addChip" @keydown.tab.prevent="addChip" @keydown.delete="removePrevChip"
+                    v-model="value" maxlength="50">
               </div>
             </div>
             <div class="col s12 m2 hide-on-small-only"></div>

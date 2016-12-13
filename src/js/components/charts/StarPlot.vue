@@ -59,7 +59,7 @@ export default {
         },
 
         pane: {
-          size: '100%',
+          size: '90%',
           center: ['50%', '60%'],
         },
 
