@@ -7,10 +7,22 @@ const socket = io({
   'reconnectionAttempts': 10
 })
 
-setInterval(() => {
+let interval = null
+
+function ping () {
   if (socket.connected) {
     socket.emit('ping')
   }
-}, 5000)
+}
+
+socket.on('connect', () => {
+  interval = setInterval(ping, 10000)
+})
+
+socket.on('disconnect', () => {
+  if (interval) {
+    clearInterval(interval)
+  }
+})
 
 export default socket
