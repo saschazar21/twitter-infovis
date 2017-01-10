@@ -27,6 +27,9 @@ export default {
     destroy() {
       Bus.$off('reset', this.onReset)
       Bus.$off('update', this.onUpdate)
+
+      this.countries = {}
+
       setTimeout(() => {
         this.chart.destroy()
         this.chart = null
@@ -34,6 +37,8 @@ export default {
     },
     onReset() {
       let points = this.chart.series[1].points
+      this.countries = {}
+
       for (let i = 0; i < points.length; i++) {
         points[i].update({
           z: null
