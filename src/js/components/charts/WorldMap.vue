@@ -15,6 +15,9 @@ export default {
   mounted() {
     this.init()
   },
+  beforeDestroy() {
+    this.beforeDestroy()
+  },
   destroyed() {
     this.destroy()
   },
@@ -24,21 +27,27 @@ export default {
       Bus.$on('reset', this.onReset)
       Bus.$on('update', this.onUpdate)
     },
-    destroy() {
+    beforeDestroy() {
       Bus.$off('reset', this.onReset)
       Bus.$off('update', this.onUpdate)
 
       this.countries = {}
-
+      
       setTimeout(() => {
+        this.onReset()
+      })
+    },
+    destroy() {
+      setTimeout(() => {
+        this.onReset();
         this.chart.destroy()
         this.chart = null
       }, 1000)
     },
     onReset() {
-      let points = this.chart.series[1].points
       this.countries = {}
 
+      let points = this.chart.series[1].points
       for (let i = 0; i < points.length; i++) {
         points[i].update({
           z: null
@@ -47,7 +56,7 @@ export default {
     },
     onUpdate(data) {
       for (let code in data.countries) {
-        if(data.countries.hasOwnProperty(code)) {
+        if (data.countries.hasOwnProperty(code)) {
           if (
             this.countries[code] &&
             this.countries[code].count == data.countries[code].count
