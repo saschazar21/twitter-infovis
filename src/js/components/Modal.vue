@@ -53,7 +53,7 @@ export default {
 </div>
 </template>
 
-<style>
+<style scoped>
 .app-modal {
   z-index: 1003;
   display: block;
