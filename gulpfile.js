@@ -76,7 +76,7 @@ gulp.task('copy:iconfont', () => {
       `${base}/*.woff`,
       `${base}/*.woff2`
     ])
-    .pipe(gulp.dest('./public/assets/fonts'));
+    .pipe(gulp.dest('./public/assets/fonts/materialicons'));
 });
 
 gulp.task('copy:icons', () => {
