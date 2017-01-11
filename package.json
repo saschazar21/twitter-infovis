@@ -8,6 +8,9 @@
     "postinstall": "gulp build",
     "heroku-postbuild": "npm prune --production"
   },
+  "engines": {
+    "node": ">=4.6 <7"
+  },
   "author": "Fabian Pirklbauer <hi@fabiandev.io>",
   "contributors": [
     "Sascha Zarhuber"
