@@ -41,10 +41,11 @@ export default {
       this.lastCount = data.count
       this.lastTime = Date.now()
       let series = this.chart.series[0];
+      let value = Math.round(perSecond * 100) / 100
       series.addPoint(
         [
           (new Date()).getTime(),
-          Math.round(perSecond * 100) / 100
+          value < 0 ? 0 : value
         ],
         true,
         true
