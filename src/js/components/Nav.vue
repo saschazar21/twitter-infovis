@@ -12,7 +12,8 @@ export default {
   },
   data: () => ({
     streamActive: false,
-    resetting: false
+    resetting: false,
+    ending: false,
   }),
   created() {
     Bus.$on('reset', this.onReset)
@@ -30,15 +31,19 @@ export default {
     },
     onEnd() {
       this.streamActive = false
+
+      setTimeout(() => {
+        this.ending = false
+      }, 500)
     },
     onReset() {
       this.resetting = false
     },
     end() {
-      this.streamActive = false
+      this.ending = true
       setTimeout(() => {
         StreamService.end()
-      })
+      }, 200)
     },
     reset() {
       this.resetting = true
@@ -65,7 +70,7 @@ export default {
           <ul class="right">
             <li><a class="menuitem"><i class="material-icons teal-text text-lighten-1" @click="showInfo">info_outline</i></a></li>
             <li><a class="menuitem" :class="{ resetting: resetting, disabled: resetting || !streamActive }"><i class="material-icons" :class="{ 'blue-grey-text': !resetting && streamActive, 'grey-text': resetting || !streamActive }" @click="reset">refresh</i></a></li>
-            <li><a class="menuitem" :class="{ disabled: !streamActive }"><i class="material-icons" :class="{ 'red-text': streamActive, 'grey-text': !streamActive }" @click="end">close</i></a></li>
+            <li><a class="menuitem" :class="{ resetting: ending, disabled: ending || !streamActive }"><i class="material-icons" :class="{ 'red-text': !ending && streamActive, 'grey-text': ending || !streamActive }" @click="end">close</i></a></li>
             <li class="github-button"><a href="https://github.com/fabiandev/vue-twitter-stream-app" target="_blank" class="waves-effect waves-light btn"><i class="material-icons left">code</i>GitHub</a></li>
           </ul>
           <div class="progress">
