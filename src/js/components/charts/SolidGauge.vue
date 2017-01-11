@@ -5,7 +5,7 @@ import Bus from '../../services/bus';
 export default {
   name: 'SolidGauge',
   data: () => ({
-    lastTime:  null,
+    lastTime: null,
     lastCount: 0,
     chart: null
   }),

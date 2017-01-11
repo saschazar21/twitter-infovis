@@ -1,8 +1,5 @@
 <script>
-import {
-  Bus,
-  StreamService
-} from '../services'
+import { Bus, StreamService } from '../services'
 
 export default {
   name: 'Controls',
@@ -66,7 +63,7 @@ export default {
       let maxLen = this.chipsLimit - this.chips.length
       for (let i = 0; i < split.length; i++) {
         if (i >= maxLen) break
-        // TODO: Parse valid hashtag from passed string
+          // TODO: Parse valid hashtag from passed string
         let tag = split[i].trim().replace(/#/gi, '')
         let lower = this.chips.map(entry => entry.toLowerCase())
         if (lower.indexOf(tag.toLowerCase()) !== -1) continue
@@ -125,8 +122,8 @@ export default {
                 <div class="chip" v-for="(chip, index) in chips">
                   #{{ chip }}<i v-show="!streamActive" class="material-icons close" @click="removeChip(index)">close</i>
                 </div>
-                <input class="input" ref="tagsInput" :readonly="limitReached" :placeholder="placeholderText" :style="{ width: !chips.length ? '250px !important' : limitReached || streamActive ? '0 !important' : '120px !important' }" @keydown.enter.prevent="addChip" @keydown.tab.prevent="addChip" @keydown.delete="removePrevChip"
-                    v-model="value" maxlength="50">
+                <input class="input" ref="tagsInput" :readonly="limitReached" :placeholder="placeholderText" :style="{ width: !chips.length ? '250px !important' : limitReached || streamActive ? '0 !important' : '120px !important' }" @keydown.enter.prevent="addChip" @keydown.tab.prevent="addChip"
+                    @keydown.delete="removePrevChip" v-model="value" maxlength="50">
               </div>
             </div>
             <div class="col s12 m2 hide-on-small-only"></div>

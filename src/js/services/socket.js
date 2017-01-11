@@ -9,7 +9,7 @@ const socket = io({
 
 let interval = null
 
-function ping () {
+function ping() {
   if (socket.connected) {
     socket.emit('ping')
   }

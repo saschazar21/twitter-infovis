@@ -32,7 +32,7 @@ export default {
       Bus.$off('update', this.onUpdate)
 
       this.countries = {}
-      
+
       setTimeout(() => {
         this.onReset()
       })

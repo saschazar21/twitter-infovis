@@ -1,8 +1,5 @@
 <script>
-import {
-  Bus,
-  StreamService
-} from '../services'
+import { Bus, StreamService } from '../services'
 import Modal from './Modal.vue'
 
 export default {

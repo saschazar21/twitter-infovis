@@ -44,8 +44,12 @@ class StreamService {
 
   reset() {
     Bus.$emit('reset', this.tags)
-    this.worker.postMessage({cmd: 'reset'})
-    this.worker.postMessage({cmd: 'broadcast'})
+    this.worker.postMessage({
+      cmd: 'reset'
+    })
+    this.worker.postMessage({
+      cmd: 'broadcast'
+    })
   }
 
   end() {
@@ -78,7 +82,9 @@ class StreamService {
   }
 
   onUpdate(data) {
-    this.worker.postMessage({'cmd': 'broadcast'})
+    this.worker.postMessage({
+      'cmd': 'broadcast'
+    })
   }
 
   onBroadcast(e) {
@@ -96,7 +102,9 @@ class StreamService {
   }
 
   destroy() {
-    this.worker.postMessage({cmd: 'close'})
+    this.worker.postMessage({
+      cmd: 'close'
+    })
     this.worker.removeEventListener('message', this.onMessage, false)
   }
 

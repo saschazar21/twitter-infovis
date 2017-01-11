@@ -1,11 +1,6 @@
 <script>
-import {
-  AnimationBuilder
-} from 'css-animator/builder'
-import {
-  Bus,
-  Socket
-} from '../services'
+import { AnimationBuilder } from 'css-animator/builder'
+import { Bus, Socket } from '../services'
 import Modal from './Modal.vue'
 import Nav from './Nav.vue'
 

@@ -30,17 +30,17 @@ function reset() {
 function processTweet(tweet) {
   data.count++
 
-  if (tweet.place && tweet.place.country_code) {
-    let code = tweet.place.country_code
+    if (tweet.place && tweet.place.country_code) {
+      let code = tweet.place.country_code
 
-    if (!data.countries[code]) {
-      data.countries[code] = {
-        count: 0
+      if (!data.countries[code]) {
+        data.countries[code] = {
+          count: 0
+        }
       }
-    }
 
-    data.countries[code].count++
-  }
+      data.countries[code].count++
+    }
 
   let tags = tweet.entities.hashtags.map(obj => {
     return obj.text.toLowerCase()
@@ -71,7 +71,10 @@ self.addEventListener('message', (e) => {
       processTweet(d.tweet)
       break
     case 'broadcast':
-      self.postMessage({ cmd: 'data', data })
+      self.postMessage({
+        cmd: 'data',
+        data
+      })
       break
   };
 }, false)

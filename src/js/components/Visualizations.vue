@@ -97,25 +97,31 @@ export default {
 .container-leave-active {
   animation: fadeOutDown 0.8s ease 0s;
 }
+
 .container-enter-active {
   animation: fadeInUp 0.8s ease 0s;
 }
+
 .card1-enter-active {
   opacity: 0;
   animation: fadeIn 0.6s ease 0.4s;
 }
+
 .card2-enter-active {
   opacity: 0;
   animation: fadeIn 0.6s ease 0.6s;
 }
+
 .card3-enter-active {
   opacity: 0;
   animation: fadeIn 0.6s ease 0.75s;
 }
+
 .card4-enter-active {
   opacity: 0;
   animation: fadeIn 0.6s ease 0.9s;
 }
+
 .card5-enter-active {
   opacity: 0;
   animation: fadeIn 0.6s ease 1s;
