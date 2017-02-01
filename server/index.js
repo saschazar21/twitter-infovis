@@ -1,17 +1,32 @@
+"use strict";
+
 require('./bootstrap');
 
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
-var errorHandler = require('errorhandler');
-var methodOverride = require('method-override');
-var compress = require('compression');
-var appConfig = require('./config/app');
-var appDevConfig = require('./config/app.dev');
-var socket = require('./socket/index');
+if (!process.env.TWITTER_API_KEY) {
+  console.log('Please set required environment variables.');
+  console.log('Exciting.');
+  return;
+}
 
-var app = express();
-var http = socket(app);
+if (process.env.NEW_RELIC_LICENSE_KEY) {
+  console.log('Enabling New Relic...');
+  require('newrelic');
+} else {
+  console.log('New Relic not enabled.');
+}
+
+const bodyParser = require('body-parser');
+const compress = require('compression');
+const config = require('./config');
+const errorHandler = require('errorhandler');
+const express = require('express');
+const methodOverride = require('method-override');
+const middleware = require('./middleware');
+const path = require('path');
+const socket = require('./socket');
+
+const app = express();
+const http = socket(app);
 
 // Define font mime types
 express.static.mime.define({
@@ -19,14 +34,6 @@ express.static.mime.define({
   'application/x-font-woff2': ['woff2'],
   'application/x-font-ttf': ['ttf']
 });
-
-// Set app config depending on argument passed to start script
-var config;
-if (process.argv.indexOf('dev') !== -1) {
-  config = appDevConfig;
-} else {
-  config = appConfig;
-}
 
 console.log('');
 console.log('Server environment is ' + process.env.NODE_ENV);
@@ -36,15 +43,11 @@ console.log('Server public dir set to ' + config.publicDir);
 app.use(compress());
 
 // Request middleware
-// app.use(require('./middleware/httpsRedirect'));
-app.use(require('./middleware/isFile'));
+app.use(middleware.isFile);
 app.use(express.static(path.join(__dirname, config.publicDir)));
 
-// Routes
-app.use(require('./routes/index'));
-
 // Serve index if file does not exist
-app.get('*', function(req, res, next) {
+app.get('*', (req, res, next) => {
   if (!req.isFile) {
     return res.sendFile('index.html', {
       root: path.join(__dirname, config.publicDir)

@@ -1,8 +1,10 @@
-var fs = require('fs');
-var config = require('../config/app');
+"use strict";
 
-module.exports = function isFile(req, res, next) {
-    fs.stat(config.publicDir + req.url, function(err, stats) {
+const fs = require('fs');
+const config = require('../config');
+
+module.exports = (req, res, next) => {
+    fs.stat(config.publicDir + req.url, (err, stats) => {
         req.isFile = stats && stats.isFile();
         next();
     });

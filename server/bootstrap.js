@@ -1,9 +1,11 @@
+"use strict";
+
 console.log('Starting server...');
 
-var path = require('path');
-var fs = require('fs');
-var env = require('node-env-file');
-var production = process.argv.indexOf('dev') !== -1 ? false : true;
+const path = require('path');
+const fs = require('fs');
+const env = require('node-env-file');
+const production = process.argv.indexOf('dev') !== -1 ? false : true;
 
 var envFile = path.join(__dirname, '/.env');
 var fileExists = false;
